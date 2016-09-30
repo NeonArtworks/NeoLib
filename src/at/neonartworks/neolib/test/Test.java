@@ -1,10 +1,7 @@
 package at.neonartworks.neolib.test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import at.neonartworks.neolib.password.NeoPassword;
+import at.neonartworks.neolib.log.LoggerLevel;
+import at.neonartworks.neolib.log.NeoLogger;
 
 public class Test {
 	public static void main(String[] args){
@@ -18,11 +15,11 @@ public class Test {
 //		vrLib.saveVoronoi(true);
 		
 //		//Logger 
-//		NeoLogger logger = new NeoLogger();
-//		logger.setLogFile();
-//		logger.timeLog("Test", LoggerLevel.INFO);
-//		logger.writeLogFile(LoggerLevel.INFO);
-//		
+		NeoLogger logger = new NeoLogger();
+		logger.setLogFile();
+		logger.timeLog("Test", LoggerLevel.INFO);
+		logger.writeLogFile(LoggerLevel.INFO);
+		
 //		//Download File from URL
 //		NeoDownload dlLib = new NeoDownload();
 //		try {

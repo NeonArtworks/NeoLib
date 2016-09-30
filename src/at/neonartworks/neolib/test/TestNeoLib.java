@@ -25,6 +25,7 @@ public class TestNeoLib {
 		BigInteger min = new BigInteger("-1000000000000000000000000000000");
 		BigInteger max = new BigInteger("1000000000000000000000000000000");
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
+//		r.setThreadSafe(true);
 		for (int i = 0; i < 10000; i++) {
 			BigInteger random = r.nextBInt();
 //			System.out.println(random);

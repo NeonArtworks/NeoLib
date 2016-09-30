@@ -176,7 +176,7 @@ public class NeoVoro extends NeoUI {
 					}
 
 				}
-				new NeoVoroPreview(Buff, getSizeX(), getSizeY());
+				new NeoPreview(Buff, getSizeX(), getSizeY());
 
 				if (getIsSave() == true) {
 					saveAsVoronoi();

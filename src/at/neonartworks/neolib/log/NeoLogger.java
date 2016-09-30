@@ -27,7 +27,7 @@ import at.neonartworks.neolib.NeoUI;
  *
  */
 
-public class NeoLogger extends NeoUI {
+public class NeoLogger{
 
 	private ArrayList<String> log = new ArrayList<String>();
 	private String logPath;

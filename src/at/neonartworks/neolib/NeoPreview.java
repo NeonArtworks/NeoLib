@@ -5,12 +5,12 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-public class NeoVoroPreview extends JFrame{
+public class NeoPreview extends JFrame{
 	
 	private BufferedImage Buff;
 	
 	
-	public NeoVoroPreview(BufferedImage buff, int sizeX, int sizeY){
+	public NeoPreview(BufferedImage buff, int sizeX, int sizeY){
 		setTitle("2D Voronoi Diagram");
 		setBounds(0, 0, sizeY, sizeX);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

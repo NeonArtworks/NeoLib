@@ -5,7 +5,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-public class NeoPath extends NeoUI{
+public class NeoPath  extends NeoUI{
 	/**
 	 * @author Florian Wagner <br>
 	 * Simple Path class for defining paths in this lib.

@@ -9,7 +9,7 @@ import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 
-public class NeoMap extends NeoPath {
+public class NeoMap {
 
 	private double latitude;
 	private double longitude;
