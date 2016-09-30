@@ -1,4 +1,4 @@
-package at.neonartworks.neolib.exceptions;
+package at.neonartworks.neolib;
 
 /**
  * An Exception if an Overflow occured, where it is critical if this happens

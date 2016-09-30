@@ -1,9 +1,7 @@
-package at.neonartworks.neolib.math;
+package at.neonartworks.neolib;
 
 import java.security.SecureRandom;
 import java.util.Random;
-
-import at.neonartworks.neolib.exceptions.OverflowException;
 
 /**
  * A Class with some Number Methods, like round, random or pow. All this Methods
