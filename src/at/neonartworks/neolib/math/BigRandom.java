@@ -1,4 +1,4 @@
-package at.neonartworks.neolib;
+package at.neonartworks.neolib.math;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

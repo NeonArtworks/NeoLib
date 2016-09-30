@@ -1,4 +1,4 @@
-package weightedrandom;
+package at.neonartworks.neolib.math;
 
 import java.util.NavigableMap;
 import java.util.Random;
