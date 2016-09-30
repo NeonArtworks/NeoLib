@@ -1,4 +1,4 @@
-package at.neonartworks.neolib.math;
+package at.neonartworks.neolib;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -57,5 +57,35 @@ public class NeoMath {
 	 */
 	public static BigDecimal longToBigDecimal(long value) {
 		return new BigDecimal(String.valueOf(value));
+	}
+
+	/**
+	 * Generates a new String with from a Long, where all the digits in the
+	 * front are 0
+	 * 
+	 * @param toFill
+	 * @return
+	 */
+	public static String fillLongWith0(long toFill) {
+		StringBuilder sb = new StringBuilder(String.valueOf(toFill));
+		for(int i = sb.length(); i < 19; i++){
+			sb.insert(0, "0");
+		}
+		return sb.toString();
+	}
+	/**
+	 * Generates a new String with from a Long, where all the digits in the
+	 * front are 0 to a total number of digits of length
+	 * 
+	 * @param toFill
+	 * @return
+	 */
+	public static StringBuilder fillLongWith0(long toFill, int length, StringBuilder builder) {
+		StringBuilder sb = builder;
+		sb.insert(0, String.valueOf(toFill));
+		for(int i = sb.length(); i < length; i++){
+			sb.insert(0, "0");
+		}
+		return sb;
 	}
 }
