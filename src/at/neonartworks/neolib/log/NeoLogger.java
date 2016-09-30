@@ -1,8 +1,8 @@
-package at.neonartworks.neolib;
+package at.neonartworks.neolib.log;
 
-import static at.neonartworks.neolib.LoggerLevel.ALERT;
-import static at.neonartworks.neolib.LoggerLevel.ERROR;
-import static at.neonartworks.neolib.LoggerLevel.INFO;
+import static at.neonartworks.neolib.log.LoggerLevel.ALERT;
+import static at.neonartworks.neolib.log.LoggerLevel.ERROR;
+import static at.neonartworks.neolib.log.LoggerLevel.INFO;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+
+import at.neonartworks.neolib.NeoPath;
+import at.neonartworks.neolib.NeoUI;
 
 /**
  * 

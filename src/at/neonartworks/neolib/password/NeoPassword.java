@@ -6,9 +6,6 @@ import java.security.NoSuchAlgorithmException;
 
 import java.util.Random;
 
-
-import at.neonartworks.neolib.NeoCrypt;
-
 public class NeoPassword extends NeoCrypt{
 
 	private Random random = new Random();

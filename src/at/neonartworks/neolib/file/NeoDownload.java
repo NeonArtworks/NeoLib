@@ -1,4 +1,4 @@
-package at.neonartworks.neolib;
+package at.neonartworks.neolib.file;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import at.neonartworks.neolib.NeoPath;
 
 public class NeoDownload extends NeoPath{
 

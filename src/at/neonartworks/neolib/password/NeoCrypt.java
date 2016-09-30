@@ -1,4 +1,4 @@
-package at.neonartworks.neolib;
+package at.neonartworks.neolib.password;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
+
+import at.neonartworks.neolib.NeoPath;
 
 public class NeoCrypt {
 	private Decoder decoder;
