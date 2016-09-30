@@ -6,11 +6,15 @@ import java.security.NoSuchAlgorithmException;
 
 import java.util.Random;
 
+
+import at.neonartworks.neolib.NeoCrypt;
+
 public class NeoPassword extends NeoCrypt{
 
 	private Random random = new Random();
 	private StringBuilder sb;
 	private String password;
+	private String key;
 	
 	private String[] symbols = { "0", "1", "2", "3", "4", "5", "6", "7", "8",
 			"9", "10", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
@@ -26,10 +30,18 @@ public class NeoPassword extends NeoCrypt{
 	
 	
 	public String getPassword(){
-		return this.priKey;
+		return this.password;
 	}
-	public void setPassword(String key){
-		this.priKey = key;
+	public void setPassword(String pass){
+		this.password = pass;
+	}
+	
+	public String getKey(){
+		return this.key;
+	}
+	
+	public void setKey(String k){
+		this.key = k;
 	}
 	
 	public String generatePassword(int length) {
@@ -40,6 +52,17 @@ public class NeoPassword extends NeoCrypt{
 		}
 		password = sb.toString();
 		return password;
+	}
+	
+	public void generateKey() {
+		
+		sb = new StringBuilder(25);
+		for (int i = 0; i < 25; i++) {
+			int iRan = random.nextInt(symbols.length);
+			sb.append(symbols[iRan]);
+		}
+		key = sb.toString();
+		setKey(key);
 	}
 	
 	public String generateHash(String password) {
