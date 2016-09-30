@@ -1,4 +1,4 @@
-package at.neonartworks.neolib;
+package at.neonartworks.neolib.test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

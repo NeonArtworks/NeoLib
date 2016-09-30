@@ -8,8 +8,8 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import at.neonartworks.neolib.BigRandom;
-import at.neonartworks.neolib.NeoMath;
+import at.neonartworks.neolib.math.BigRandom;
+import at.neonartworks.neolib.math.NeoMath;
 import at.neonartworks.neolib.password.NeoPassword;
 
 public class TestNeoLib {

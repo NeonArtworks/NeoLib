@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
-import static at.neonartworks.neolib.NeoMath.*;
+import static at.neonartworks.neolib.math.NeoMath.*;
 
 /**
  * A random for BigDecimal / BigInteger <br>
