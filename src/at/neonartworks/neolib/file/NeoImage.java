@@ -1,14 +1,16 @@
-package at.neonartworks.neolib;
+package at.neonartworks.neolib.file;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+
+import at.neonartworks.neolib.NeoPath;
+import at.neonartworks.neolib.NeoPreview;
 
 public class NeoImage {
 

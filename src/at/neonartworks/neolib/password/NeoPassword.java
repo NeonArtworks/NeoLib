@@ -3,11 +3,7 @@ package at.neonartworks.neolib.password;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import java.util.Random;
-
-
-import at.neonartworks.neolib.NeoCrypt;
 
 public class NeoPassword extends NeoCrypt{
 
