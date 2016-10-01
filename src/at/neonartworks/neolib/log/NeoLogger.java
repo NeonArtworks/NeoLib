@@ -21,13 +21,13 @@ import at.neonartworks.neolib.NeoUI;
  * 
  * @author Florian Wagner
  * 
- * <br>
+ *         <br>
  *         This class enables to log and save Strings It can log to three
  *         different log types: INFO, ALERT, ERROR
  *
  */
 
-public class NeoLogger{
+public class NeoLogger {
 
 	private ArrayList<String> log = new ArrayList<String>();
 	private String logPath;
@@ -64,7 +64,7 @@ public class NeoLogger{
 	 * @param logg
 	 * @param type
 	 * 
-	 * <br>
+	 *            <br>
 	 *            Adds a String with the defined LogLevel to the logfile.
 	 */
 
@@ -75,13 +75,12 @@ public class NeoLogger{
 	/**
 	 * @param logg
 	 * @param type
-	 * <br>
+	 *            <br>
 	 *            Adds a String with the defined LogLevel and the current System
 	 *            time to the logfile.
 	 */
 	public void timeLog(String logg, LoggerLevel type) {
-		log.add("[" + getLogTime() + "]" + " [" + type.toString() + "] " + ": "
-				+ logg);
+		log.add("[" + getLogTime() + "]" + " [" + type.toString() + "] " + ": " + logg);
 
 	}
 
@@ -101,10 +100,13 @@ public class NeoLogger{
 	}
 
 	/**
+	 * Writes the logfile to the path defined by 'setLogFile'. only the log
+	 * types which match with levels are being written.
+	 * 
 	 * @param levels
-	 * <br>
-	 *            Writes the logfile to the path defined by 'setLogFile'. only
-	 *            the log types witch match with levels are being written.
+	 *            Which Levels should be logged, if left blank all levels are
+	 *            logged
+	 * 
 	 * 
 	 */
 	public void writeLogFile(LoggerLevel... levels) {
@@ -115,8 +117,7 @@ public class NeoLogger{
 		levelList = addAllToList(levels, levelList);
 		try {
 			writer = new BufferedWriter(new FileWriter(path.getPath()));
-			writer.write("Sarting Log at: " + getLogTime()
-					+ System.lineSeparator());
+			writer.write("Sarting Log at: " + getLogTime() + System.lineSeparator());
 
 			for (String sLine : log.toString().split(",")) {
 				// System.out.println(sLine);
@@ -137,6 +138,19 @@ public class NeoLogger{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Writes the logfile to the path defined by 'setLogFile'. Only the log
+	 * types which have higher priority than above
+	 * 
+	 * @param above
+	 *            What the minumum LoggerLevel is
+	 * 
+	 * 
+	 */
+	public void writeLogFile(LoggerLevel above) {
+		writeLogFile(above.getLevelsAbove());
 	}
 
 }
