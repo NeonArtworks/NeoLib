@@ -60,32 +60,114 @@ public class NeoMath {
 	}
 
 	/**
-	 * Generates a new String with from a Long, where all the digits in the
-	 * front are 0
+	 * @param value
+	 *            (float) The Value to clamp
+	 * @param min
+	 *            The Min Value.
+	 * @param max
+	 *            The Max Value
 	 * 
-	 * @param toFill
-	 * @return
+	 * @return The clamped Value
 	 */
-	public static String fillLongWith0(long toFill) {
-		StringBuilder sb = new StringBuilder(String.valueOf(toFill));
-		for(int i = sb.length(); i < 19; i++){
-			sb.insert(0, "0");
-		}
-		return sb.toString();
+
+	public static float clamp(float value, int min, int max) {
+		if (value < min)
+			return min;
+		if (value > max)
+			return max;
+		return value;
+
 	}
+
 	/**
-	 * Generates a new String with from a Long, where all the digits in the
-	 * front are 0 to a total number of digits of length
+	 * @param value
+	 *            (double) The Value to clamp
+	 * @param min
+	 *            The Min Value.
+	 * @param max
+	 *            The Max Value
 	 * 
-	 * @param toFill
-	 * @return
+	 * @return The clamped Value
 	 */
-	public static StringBuilder fillLongWith0(long toFill, int length, StringBuilder builder) {
-		StringBuilder sb = builder;
-		sb.insert(0, String.valueOf(toFill));
-		for(int i = sb.length(); i < length; i++){
-			sb.insert(0, "0");
+
+	public static double clamp(double value, int min, int max) {
+		if (value < min)
+			return min;
+		if (value > max)
+			return max;
+		return value;
+
+	}
+
+	/**
+	 * @param x
+	 *            (double)
+	 * @return
+	 * 
+	 * <br>
+	 *         a more efficient floor method
+	 */
+	public static int fastfloor(double x) {
+		return x > 0 ? (int) x : (int) x - 1;
+	}
+
+	/**
+	 * @param x
+	 *            (float)
+	 * @return
+	 * 
+	 * <br>
+	 *         a more efficient floor method
+	 */
+
+	public static int fastfloor(float x) {
+		return x > 0 ? (int) x : (int) x - 1;
+	}
+
+	/**
+	 *
+	 * @param p1
+	 * @param p2
+	 * @return The length between those Points
+	 */
+
+	public static double length(NeoPoint p1, NeoPoint p2) {
+		return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
+				+ (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
+	}
+
+	/**
+	 * @param val
+	 *            (float)
+	 * @return Returns val as positive number , if val is negativ
+	 * 
+	 */
+
+	public static float pos(float val) {
+		if (val < 0) {
+			val = val * (-1);
 		}
-		return sb;
+		if (val > 0) {
+			val = val;
+		}
+		return val;
+
+	}
+
+	/**
+	 * @param val
+	 *            (double)
+	 * @return Returns val as positive number , if val is negativ
+	 * 
+	 */
+	public static double pos(double val) {
+		if (val < 0) {
+			val = val * (-1);
+		}
+		if (val > 0) {
+			val = val;
+		}
+		return val;
+
 	}
 }
