@@ -25,6 +25,8 @@ public class WeightedRandomAccurate<E> implements IWeightedRandom<BigDecimal, E>
 	private final NavigableMap<BigDecimal, E> map = new TreeMap<BigDecimal, E>();
 	private final BigRandom random;
 	private BigDecimal total = BigDecimal.ZERO;
+	private BigDecimal minWeight = BigDecimal.ZERO;
+	private int accuracy = 0;
 	
 	public WeightedRandomAccurate(BigRandom random) {
 		this.random = random;
@@ -36,14 +38,22 @@ public class WeightedRandomAccurate<E> implements IWeightedRandom<BigDecimal, E>
 
 	@Override
 	public void add(BigDecimal weight, E element) {
-		// TODO Auto-generated method stub
-
+		if(weight.scale() > accuracy){
+			accuracy = weight.scale();
+		}
+		if(minWeight.compareTo(weight) > 0){
+			minWeight = weight;
+		}
+		map.put(weight, element);
+		total = total.add(weight);
 	}
 
 	@Override
 	public E next() {
-		// TODO Auto-generated method stub
-		return null;
+		random.setDefaultFrom(minWeight);
+		random.setDefaultTo(total);
+		BigDecimal key = random.nextBDecimal(accuracy);
+		return map.ceilingEntry(key).getValue();
 	}
 
 }
