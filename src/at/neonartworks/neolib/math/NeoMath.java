@@ -99,25 +99,21 @@ public class NeoMath {
 
 	}
 
-	/**
-	 * @param x
-	 *            (double)
-	 * @return
+	/***
+	 * Calculates the floor value of a double more efficiently
 	 * 
-	 * 		<br>
-	 *         a more efficient floor method
+	 * @param x
+	 * @return a more efficient floor method
 	 */
 	public static int fastfloor(double x) {
 		return x > 0 ? (int) x : (int) x - 1;
 	}
 
 	/**
-	 * @param x
-	 *            (float)
-	 * @return
+	 * Calculates the floor value of a float more efficiently
 	 * 
-	 * 		<br>
-	 *         a more efficient floor method
+	 * @param x
+	 * @return a more efficient floor method
 	 */
 
 	public static int fastfloor(float x) {
@@ -127,7 +123,9 @@ public class NeoMath {
 	/**
 	 *
 	 * @param p1
+	 *            Point 1
 	 * @param p2
+	 *            Point 2
 	 * @return The length between those Points
 	 */
 
