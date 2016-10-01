@@ -104,7 +104,7 @@ public class NeoMath {
 	 *            (double)
 	 * @return
 	 * 
-	 * <br>
+	 * 		<br>
 	 *         a more efficient floor method
 	 */
 	public static int fastfloor(double x) {
@@ -116,7 +116,7 @@ public class NeoMath {
 	 *            (float)
 	 * @return
 	 * 
-	 * <br>
+	 * 		<br>
 	 *         a more efficient floor method
 	 */
 
@@ -132,8 +132,8 @@ public class NeoMath {
 	 */
 
 	public static double length(NeoPoint p1, NeoPoint p2) {
-		return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
-				+ (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
+		return Math.sqrt(
+				(p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
 	}
 
 	/**
@@ -169,5 +169,49 @@ public class NeoMath {
 		}
 		return val;
 
+	}
+
+	/**
+	 * Generates a String representing the value filled with 0 in the front to
+	 * match the number of digits <br>
+	 * e.g <code>fillLongWith0(1234, 6)</code> will give you 001234
+	 * 
+	 * @param value
+	 *            The value
+	 * @param digits
+	 *            How many digits it should have
+	 * @param sb
+	 *            The StringBuilder to attach the Value
+	 * @return the String.
+	 */
+	public static String fillLongWith0(long value, int digits) {
+		StringBuilder sb = new StringBuilder();
+		String longS = String.valueOf(value);
+		sb.append(longS);
+		for (int i = longS.length(); i < digits; i++) {
+			sb.insert(0, "0");
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Adds 0 and value in front of sb, so that there are exactly digits of
+	 * digits
+	 * 
+	 * @param value
+	 *            The value
+	 * @param digits
+	 *            How many digits it should have
+	 * @param sb
+	 *            The StringBuilder to attach the Value
+	 * @return sb again
+	 */
+	public static StringBuilder fillLongWith0(long value, int digits, StringBuilder sb) {
+		String longS = String.valueOf(value);
+		sb.insert(0, longS);
+		for (int i = longS.length(); i < digits; i++) {
+			sb.insert(0, "0");
+		}
+		return sb;
 	}
 }

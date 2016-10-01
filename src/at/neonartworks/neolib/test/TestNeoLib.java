@@ -52,7 +52,7 @@ public class TestNeoLib {
 	@Test
 	public void testFillLong(){
 		long l1 = 123;
-		String l1S =NeoMath.fillLongWith0(l1);
+		String l1S =NeoMath.fillLongWith0(l1, 19);
 		assertEquals("0000000000000000123", l1S);
 	}
 	@Test
