@@ -14,7 +14,7 @@ import java.util.TreeMap;
  *
  * @param <E>
  */
-public class WeightedRandom<E> {
+public class WeightedRandom<E> implements IWeightedRandom<Double, E>{
 	private final NavigableMap<Double, E> map = new TreeMap<Double, E>();
 	private final Random random;
 	private double total = 0;
@@ -27,7 +27,7 @@ public class WeightedRandom<E> {
 		this.random = random;
 	}
 
-	public void add(double weight, E result) {
+	public void add(Double weight, E result) {
 		if (weight <= 0)
 			return;
 		total += weight;
