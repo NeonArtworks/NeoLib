@@ -137,41 +137,6 @@ public class NeoMath {
 	}
 
 	/**
-	 * @param val
-	 *            (float)
-	 * @return Returns val as positive number , if val is negativ
-	 * 
-	 */
-
-	public static float pos(float val) {
-		if (val < 0) {
-			val = val * (-1);
-		}
-		if (val > 0) {
-			val = val;
-		}
-		return val;
-
-	}
-
-	/**
-	 * @param val
-	 *            (double)
-	 * @return Returns val as positive number , if val is negativ
-	 * 
-	 */
-	public static double pos(double val) {
-		if (val < 0) {
-			val = val * (-1);
-		}
-		if (val > 0) {
-			val = val;
-		}
-		return val;
-
-	}
-
-	/**
 	 * Generates a String representing the value filled with 0 in the front to
 	 * match the number of digits <br>
 	 * e.g <code>fillLongWith0(1234, 6)</code> will give you 001234
