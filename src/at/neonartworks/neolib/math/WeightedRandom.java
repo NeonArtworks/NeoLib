@@ -18,11 +18,16 @@ public class WeightedRandom<E> implements IWeightedRandom<Double, E>{
 	private final NavigableMap<Double, E> map = new TreeMap<Double, E>();
 	private final Random random;
 	private double total = 0;
-
+	/**
+	 * Creates a new WeightedRandom with a default Random
+	 */
 	public WeightedRandom() {
 		this(new Random());
 	}
-
+	/**
+	 * Creates a new WeightedRandom with a random as Random
+	 * @param random The random to be used
+	 */
 	public WeightedRandom(Random random) {
 		this.random = random;
 	}
