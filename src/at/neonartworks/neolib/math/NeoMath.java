@@ -2,8 +2,15 @@ package at.neonartworks.neolib.math;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import at.neonartworks.neolib.exceptions.ClassNotCompatibleException;
 
 public class NeoMath {
+
 	/**
 	 * returns the absolute value of the long, unlike the Math function, this
 	 * return <code>Long.maxValue</code> for <code>Long.minValue</code>, where
@@ -19,9 +26,69 @@ public class NeoMath {
 		if (a == Long.MIN_VALUE) {
 			return Long.MAX_VALUE;
 		}
+		return (long) -a;
+	}
+
+	/**
+	 * returns the absolute value of the int, unlike the Math function, this
+	 * return <code>Integer.maxValue</code> for <code>Integer.minValue</code>,
+	 * where the Math function would return <code>Integer.minValue</code>
+	 * 
+	 * @param a
+	 * @return
+	 */
+	public static int absInt(int a) {
+		if (a >= 0) {
+			return a;
+		}
+		if (a == Integer.MIN_VALUE) {
+			return Integer.MAX_VALUE;
+		}
 		return -a;
 	}
 
+	/**
+	 * returns the absolute value of the short, unlike the Math function, this
+	 * return <code>Short.maxValue</code> for <code>Short.minValue</code>, where
+	 * the Math function would return <code>Short.minValue</code>
+	 * 
+	 * @param a
+	 * @return
+	 */
+	public static short absShort(short a) {
+		if (a >= 0) {
+			return a;
+		}
+		if (a == Short.MIN_VALUE) {
+			return Short.MAX_VALUE;
+		}
+		return (short) -a;
+	}
+
+	/**
+	 * returns the absolute value of the byte, unlike the Math function, this
+	 * return <code>Byte.maxValue</code> for <code>Byte.minValue</code>, where
+	 * the Math function would return <code>Byte.minValue</code>
+	 * 
+	 * @param a
+	 * @return
+	 */
+	public static byte absByte(byte a) {
+		if (a >= 0) {
+			return a;
+		}
+		if (a == Byte.MIN_VALUE) {
+			return Byte.MAX_VALUE;
+		}
+		return (byte) -a;
+	}
+
+	/**
+	 * Calculates the number of digits of a BigInteger
+	 * 
+	 * @param bigInt
+	 * @return
+	 */
 	public static int bigIntegerLenght(BigInteger bigInt) {
 		return bigInt.toString().length();
 	}
@@ -176,5 +243,47 @@ public class NeoMath {
 			sb.insert(0, "0");
 		}
 		return sb;
+	}
+
+	/**
+	 * Calculates the Sum of an Array of doubles
+	 * 
+	 * @param values
+	 * @return
+	 */
+	public static double sumDouble(double... values) {
+		double sum = 0;
+		for (double d : values) {
+			sum += d;
+		}
+		return sum;
+	}
+
+	/**
+	 * Calculates the sum of an Array of BigIntegers
+	 * 
+	 * @param values
+	 * @return
+	 */
+	public static BigInteger sumBigInteger(BigInteger... values) {
+		BigInteger sum = BigInteger.ZERO;
+		for (BigInteger bInt : values) {
+			sum = sum.add(bInt);
+		}
+		return sum;
+	}
+
+	/**
+	 * Calculates the sum of an Array of BigDecimals
+	 * 
+	 * @param values
+	 * @return
+	 */
+	public static BigDecimal sumBigDecimal(BigDecimal... values) {
+		BigDecimal sum = BigDecimal.ZERO;
+		for (BigDecimal bInt : values) {
+			sum = sum.add(bInt);
+		}
+		return sum;
 	}
 }

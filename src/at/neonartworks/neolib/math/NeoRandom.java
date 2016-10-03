@@ -15,7 +15,7 @@ import at.neonartworks.neolib.exceptions.OverflowException;
  * @author Alexander Daum
  *
  */
-public class NeoNumber {
+public class NeoRandom {
 	/**
 	 * The respective from and to values used in the next methods without
 	 * additional parameters
@@ -30,7 +30,7 @@ public class NeoNumber {
 	/**
 	 * Constructs a new NeoNumber, the Random is a new Random with default seed
 	 */
-	public NeoNumber() {
+	public NeoRandom() {
 		random = new Random();
 	}
 
@@ -42,7 +42,7 @@ public class NeoNumber {
 	 * @param threadSafe
 	 *            If this NeoNumber should use a secureRandom to be threadSafe
 	 */
-	public NeoNumber(boolean threadSafe) {
+	public NeoRandom(boolean threadSafe) {
 		if (threadSafe) {
 			random = new SecureRandom();
 		} else {
@@ -58,7 +58,7 @@ public class NeoNumber {
 	 *            SecureRandom
 	 * @return This Instance, to allow method chaining for convenience
 	 */
-	public NeoNumber setThreadSafe(boolean threadSafe) {
+	public NeoRandom setThreadSafe(boolean threadSafe) {
 		if (threadSafe) {
 			random = new SecureRandom();
 		} else {
@@ -74,7 +74,7 @@ public class NeoNumber {
 	 *            the Seed for the Random
 	 * @return This Instance, to allow method chaining for convenience
 	 */
-	public NeoNumber setSeed(long seed) {
+	public NeoRandom setSeed(long seed) {
 		this.random.setSeed(seed);
 		return this;
 	}

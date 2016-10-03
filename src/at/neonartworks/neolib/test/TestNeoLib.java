@@ -8,8 +8,11 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
+import at.neonartworks.neolib.exceptions.OverflowException;
 import at.neonartworks.neolib.math.BigRandom;
 import at.neonartworks.neolib.math.NeoMath;
+import at.neonartworks.neolib.math.number.INeoNumber;
+import at.neonartworks.neolib.math.number.NeoNumberByte;
 import at.neonartworks.neolib.password.NeoPassword;
 
 public class TestNeoLib {
@@ -25,10 +28,10 @@ public class TestNeoLib {
 		BigInteger min = new BigInteger("-1000000000000000000000000000000");
 		BigInteger max = new BigInteger("1000000000000000000000000000000");
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
-//		r.setThreadSafe(true);
+		// r.setThreadSafe(true);
 		for (int i = 0; i < 10000; i++) {
 			BigInteger random = r.nextBInt();
-//			System.out.println(random);
+			// System.out.println(random);
 			if (random.compareTo(min) < 0 || random.compareTo(max) > 0) {
 				fail("BigInt " + random + " not in range");
 			}
@@ -42,21 +45,22 @@ public class TestNeoLib {
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
 		for (int i = 0; i < 10000; i++) {
 			BigDecimal random = r.nextBDecimal(2);
-//			System.out.println(random);
+			// System.out.println(random);
 			if (random.compareTo(min) < 0 || random.compareTo(max) > 0) {
-				fail("BigDecimal "+ random +" not in range");
+				fail("BigDecimal " + random + " not in range");
 			}
 		}
 	}
-	
+
 	@Test
-	public void testFillLong(){
+	public void testFillLong() {
 		long l1 = 123;
-		String l1S =NeoMath.fillLongWith0(l1, 19);
+		String l1S = NeoMath.fillLongWith0(l1, 19);
 		assertEquals("0000000000000000123", l1S);
 	}
+
 	@Test
-	public void testPw(){
+	public void testPw() {
 		NeoPassword pw = new NeoPassword();
 		String orig = pw.generatePassword(25);
 		pw.setPassword(orig);
@@ -66,7 +70,24 @@ public class TestNeoLib {
 		String decrypt = pw.decrypt(encrypt);
 		System.out.println(decrypt);
 		assertEquals(orig, decrypt);
-	
+
+	}
+
+	@Test
+	public void testNeoNumber() {
+		INeoNumber<Byte> num = NeoNumberByte.parse("25");
+		num = num.add(num);
+		assertEquals(50, num.getValue().byteValue());
+		assertEquals(Byte.class, num.getType());
+		num = num.multiply(new NeoNumberByte((byte) -1));
+		assertEquals(-50, num.getValue().byteValue());
+		boolean crashed = false;
+		try {
+			num.multiply(new NeoNumberByte((byte) 50));
+		} catch (OverflowException e) {
+			crashed = true;
+		}
+		assertEquals(true, crashed);
 	}
 
 }
