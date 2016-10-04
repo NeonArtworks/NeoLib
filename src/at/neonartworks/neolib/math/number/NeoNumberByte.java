@@ -3,6 +3,12 @@ package at.neonartworks.neolib.math.number;
 import at.neonartworks.neolib.exceptions.OverflowException;
 import at.neonartworks.neolib.math.NeoMath;
 
+/**
+ * A Class for NeoNumbers using Bytes
+ * 
+ * @author Alexander Daum
+ *
+ */
 public class NeoNumberByte implements INeoNumber<Byte> {
 	private final byte value;
 
@@ -11,7 +17,7 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 	}
 
 	public NeoNumberByte(INeoNumber<?> value) {
-		this(parse(value.toString()).value);
+		this(value.toString());
 	}
 
 	/**
@@ -21,14 +27,14 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 	 * @param s
 	 *            The String value
 	 */
-	public static NeoNumberByte parse(String s) {
+	public NeoNumberByte(String s) {
 		byte b;
 		try {
 			b = Byte.parseByte(s);
 		} catch (NumberFormatException e) {
 			throw new OverflowException("Value" + s + "is not a Byte", e);
 		}
-		return new NeoNumberByte(b);
+		this.value = b;
 	}
 
 	@Override
@@ -108,14 +114,37 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 	}
 
 	@Override
-	public boolean hasSameSign(INeoNumber<?> other) {
-		NeoNumberByte otherAsNum = new NeoNumberByte(other);
-		return this.value >= 0 ? otherAsNum.getValue() >= 0 : otherAsNum.getValue() < 0;
+	public int getAccurateDecimals() {
+		return 0;
 	}
 
 	@Override
-	public int getAccurateDecimals() {
-		return 0;
+	public int hashCode() {
+		return Byte.hashCode(value);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NeoNumberByte other = (NeoNumberByte) obj;
+		if (value != other.value)
+			return false;
+		return true;
+	}
+
+	@Override
+	public boolean hasDecimals() {
+		return false;
+	}
+
+	@Override
+	public Sign getSign() {
+		return value < 0 ? Sign.MINUS : Sign.PLUS;
 	}
 
 }

@@ -2,12 +2,8 @@ package at.neonartworks.neolib.math;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import at.neonartworks.neolib.exceptions.ClassNotCompatibleException;
+import at.neonartworks.neolib.math.number.INeoNumber;
 
 public class NeoMath {
 
@@ -285,5 +281,30 @@ public class NeoMath {
 			sum = sum.add(bInt);
 		}
 		return sum;
+	}
+
+	/**
+	 * Calculates the sum of an Array of NeoNumbers, the Result type will be the
+	 * largest value in numbers
+	 * 
+	 * @param numbers
+	 * @param reduce
+	 * @return
+	 */
+	public static INeoNumber<?> sumNeoNumber(INeoNumber<?>... numbers) {
+		boolean needDecimal = false;
+		int size = 0;
+		for (INeoNumber<?> nn : numbers) {
+			if (nn.hasDecimals())
+				needDecimal = true;
+			int nowSize = nn.getSize();
+			if(nowSize > size){
+				size = nowSize;
+			}
+			else if (nowSize == size){
+				++size;
+			}
+		}
+		
 	}
 }

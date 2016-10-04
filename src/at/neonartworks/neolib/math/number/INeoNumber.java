@@ -1,5 +1,14 @@
 package at.neonartworks.neolib.math.number;
 
+/**
+ * Interface for all NeoNumber, you can also add your own NeoNumber if you
+ * implement this interface and register it in the NeoNumberRegistry.
+ * 
+ * @author Alexander Daum
+ *
+ * @param <V>
+ *            The Value of the NeoNumber, it is the type used for calculation
+ */
 public interface INeoNumber<V> {
 	/**
 	 * Adds an other NeoNumber to this NeoNumber and returns the Value, throws
@@ -11,7 +20,7 @@ public interface INeoNumber<V> {
 	INeoNumber<V> add(INeoNumber<?> other);
 
 	/**
-	 * Multiplies this NeoNumber with another one, throws and Overflow exception
+	 * Multiplies this NeoNumber with another one, throws an Overflow exception
 	 * if this is not possible
 	 * 
 	 * @param other
@@ -76,6 +85,12 @@ public interface INeoNumber<V> {
 	int getAccurateDecimals();
 
 	/**
+	 * @return true if the actual Value of this NeoNumber has numbers behind the
+	 *         comma
+	 */
+	boolean hasDecimals();
+
+	/**
 	 * Returns the type of number this represents, for example NeoNumberByte
 	 * returnes Byte.class, NeoNumberIn returns Integer.class
 	 * 
@@ -100,6 +115,29 @@ public interface INeoNumber<V> {
 	 * @param other
 	 * @return
 	 */
-	boolean hasSameSign(INeoNumber<?> other);
+	default boolean hasSameSign(INeoNumber<?> other) {
+		return this.getSign() == other.getSign();
+	}
 
+	/**
+	 * 
+	 * @return The Sign of the Number, as specified in the Enum Sign
+	 */
+	Sign getSign();
+
+	/**
+	 * 
+	 * @return The ammount of digits this value has without +/-
+	 */
+	default int getSize() {
+		int length = this.getValue().toString().length();
+		return this.getSign() == Sign.PLUS ? length : length - 1;
+	}
+	/**
+	 * 
+	 * @return How many digits this Number can maximally hold
+	 */
+	default int getMaxSize(){
+		
+	}
 }
