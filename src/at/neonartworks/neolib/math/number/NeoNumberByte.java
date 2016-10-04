@@ -11,6 +11,7 @@ import at.neonartworks.neolib.math.NeoMath;
  */
 public class NeoNumberByte implements INeoNumber<Byte> {
 	private final byte value;
+	public static final NeoNumberByte ByteZERO = new NeoNumberByte((byte) 0);
 
 	public NeoNumberByte(byte b) {
 		this.value = b;
@@ -69,8 +70,12 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 
 	@Override
 	public NeoNumberByte divide(INeoNumber<?> other) {
-		// TODO Auto-generated method stub
-		return null;
+		NeoNumberByte otherNum = new NeoNumberByte(other);
+		if (otherNum.value == 0) {
+			throw new ArithmeticException("Divide by 0");
+		}
+		byte divVal = (byte) (this.value / otherNum.value);
+		return new NeoNumberByte(divVal);
 	}
 
 	@Override
@@ -145,6 +150,17 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 	@Override
 	public Sign getSign() {
 		return value < 0 ? Sign.MINUS : Sign.PLUS;
+	}
+
+	@Override
+	public INeoNumber<?> divideAccurate(INeoNumber<?> other, int accuracy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public INeoNumber<Byte> valueZero() {
+		return NeoNumberByte.ByteZERO;
 	}
 
 }

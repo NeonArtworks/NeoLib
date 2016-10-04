@@ -4,6 +4,8 @@ import at.neonartworks.neolib.exceptions.OverflowException;
 import at.neonartworks.neolib.math.NeoMath;
 
 public class NeoNumberShort implements INeoNumber<Short> {
+	
+	public static NeoNumberShort ShortZERO = new NeoNumberShort((short) 0);
 	private final short value;
 
 	public NeoNumberShort(short value) {
@@ -104,6 +106,39 @@ public class NeoNumberShort implements INeoNumber<Short> {
 	@Override
 	public Sign getSign() {
 		return value < 0 ? Sign.MINUS : Sign.PLUS;
+	}
+
+	@Override
+	public INeoNumber<?> divideAccurate(INeoNumber<?> other, int accuracy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public INeoNumber<Short> valueZero() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
+
+	@Override
+	public int hashCode() {
+		return Short.hashCode(value);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NeoNumberShort other = (NeoNumberShort) obj;
+		return value == other.value;
 	}
 
 }

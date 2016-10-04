@@ -5,11 +5,10 @@ import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import at.neonartworks.neolib.exceptions.OverflowException;
 import at.neonartworks.neolib.math.BigRandom;
@@ -18,6 +17,7 @@ import at.neonartworks.neolib.math.NeoRandom;
 import at.neonartworks.neolib.math.number.INeoNumber;
 import at.neonartworks.neolib.math.number.NeoNumberByte;
 import at.neonartworks.neolib.math.number.NeoNumberRegistry;
+import at.neonartworks.neolib.math.number.NeoNumberShort;
 import at.neonartworks.neolib.password.NeoPassword;
 
 public class TestNeoLib {
@@ -118,13 +118,48 @@ public class TestNeoLib {
 		for (int i = 0; i < fa.length; i++) {
 			floorFast[i] = NeoMath.fastfloor(fa[i]);
 		}
-		System.out.println("fast: " + (System.nanoTime() - tStart));
+		System.out.println("fastFloor: " + (System.nanoTime() - tStart));
 		tStart = System.nanoTime();
 		for (int i = fa.length - 1, j = 0; i >= 0; i--, j++) {
 			floorNormal[j] = (float) Math.floor(fa[j]);
 		}
-		System.out.println("normal: " + (System.nanoTime() - tStart));
-		assertEquals(true, Arrays.equals(floorFast, floorNormal));
+		System.out.println("normalFloor: " + (System.nanoTime() - tStart));
+	}
+
+	// @Test
+	// public void StringBuffervsStringBuilder() {
+	// int cycles = 10000;
+	// long startTime = System.nanoTime();
+	// StringBuilder sb = new StringBuilder();
+	// for (int i = 0; i < cycles; i++) {
+	// sb.append("a");
+	// }
+	// System.out.println("StringBuilder: " + (System.nanoTime() - startTime));
+	//
+	// startTime = System.nanoTime();
+	// StringBuffer sbuff = new StringBuffer();
+	// for (int i = 0; i < cycles; i++) {
+	// sbuff.append("a");
+	// }
+	// System.out.println("StringBuffer: " + (System.nanoTime() - startTime));
+	//
+	// startTime = System.nanoTime();
+	// String s = "";
+	// for (int i = 0; i < cycles; i++) {
+	// s += "a";
+	// }
+	// System.out.println("String: " + (System.nanoTime() - startTime));
+	// }
+
+	@Test
+	public void testNeoNumberAdd() {
+		ArrayList<INeoNumber<?>> list = new ArrayList<INeoNumber<?>>();
+		list.add(new NeoNumberByte((byte) 5));
+		list.add(new NeoNumberByte((byte) 25));
+		list.add(new NeoNumberByte("123"));
+		list.add(new NeoNumberShort((short) 12345));
+		INeoNumber<?> sum = NeoMath.sumNeoNumber(list);
+		System.out.println(sum.getClass() + " " + sum);
 	}
 
 }

@@ -38,6 +38,16 @@ public interface INeoNumber<V> {
 	INeoNumber<V> divide(INeoNumber<?> other);
 
 	/**
+	 * Divides this NeoNumber by another one and uses the smalles possible
+	 * decimal Format which can support the value, throws an Overflow Exception
+	 * if the Action is not possible
+	 * 
+	 * @param other
+	 * @return a new NeoNumber, with the value, this.value / other.value
+	 */
+	INeoNumber<?> divideAccurate(INeoNumber<?> other, int accuracy);
+
+	/**
 	 * Calculates the Absolute value, returns MaxValue, if MinValue would have
 	 * an higher absolute as MaxValue is
 	 * 
@@ -77,6 +87,12 @@ public interface INeoNumber<V> {
 	 * @return the minimum value
 	 */
 	V min();
+
+	/**
+	 * 
+	 * @return a new Instance of the class of this Object with value 0
+	 */
+	INeoNumber<V> valueZero();
 
 	/**
 	 * @return The decimal Accuracy of the Number, that means how many digits
@@ -133,11 +149,14 @@ public interface INeoNumber<V> {
 		int length = this.getValue().toString().length();
 		return this.getSign() == Sign.PLUS ? length : length - 1;
 	}
+
 	/**
 	 * 
 	 * @return How many digits this Number can maximally hold
 	 */
-	default int getMaxSize(){
-		
+	default int getMaxSize() {
+		return max().toString().length();
 	}
+	@Override
+	String toString();
 }

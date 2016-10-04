@@ -10,7 +10,8 @@ public class NeoNumberRegistry {
 	 */
 	private static final Map<Class<?>, INeoNumber<?>> registryNamespace = new HashMap<Class<?>, INeoNumber<?>>();
 	static{
-		register(new NeoNumberByte((byte) 0));
+		register(NeoNumberByte.ByteZERO);
+		register(NeoNumberShort.ShortZERO);
 	}
 	/**
 	 * Register a new NeoNumber
