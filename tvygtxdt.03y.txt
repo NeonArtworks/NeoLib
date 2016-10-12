@@ -1,0 +1,54 @@
+﻿Some changes
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    bin/.gitignore
+#	new file:   bin/at/neonartworks/neolib/NeoMac.class
+#	modified:   bin/at/neonartworks/neolib/NeoMap.class
+#	modified:   bin/at/neonartworks/neolib/NeoPath.class
+#	new file:   bin/at/neonartworks/neolib/NeoPreview.class
+#	modified:   bin/at/neonartworks/neolib/NeoVoro.class
+#	new file:   bin/at/neonartworks/neolib/exceptions/ClassNotCompatibleException.class
+#	new file:   bin/at/neonartworks/neolib/file/NeoDownload.class
+#	new file:   bin/at/neonartworks/neolib/file/NeoFileHandler.class
+#	new file:   bin/at/neonartworks/neolib/file/NeoImage.class
+#	new file:   bin/at/neonartworks/neolib/log/LoggerLevel.class
+#	new file:   bin/at/neonartworks/neolib/log/NeoLogger.class
+#	modified:   bin/at/neonartworks/neolib/math/BigRandom.class
+#	new file:   bin/at/neonartworks/neolib/math/ClassFilter.class
+#	new file:   bin/at/neonartworks/neolib/math/IClassFilter.class
+#	new file:   bin/at/neonartworks/neolib/math/IWeightedRandom.class
+#	modified:   bin/at/neonartworks/neolib/math/NeoMath.class
+#	new file:   bin/at/neonartworks/neolib/math/NeoPoint.class
+#	new file:   bin/at/neonartworks/neolib/math/NeoRandom.class
+#	new file:   bin/at/neonartworks/neolib/math/WeightedClassFilter.class
+#	new file:   bin/at/neonartworks/neolib/math/WeightedRandomAccurate.class
+#	new file:   bin/at/neonartworks/neolib/math/mtrs/MTRS_Math.class
+#	new file:   bin/at/neonartworks/neolib/math/number/INeoNumber.class
+#	new file:   bin/at/neonartworks/neolib/math/number/NeoNumberByte.class
+#	new file:   bin/at/neonartworks/neolib/math/number/NeoNumberInt.class
+#	new file:   bin/at/neonartworks/neolib/math/number/NeoNumberRegistry.class
+#	new file:   bin/at/neonartworks/neolib/math/number/NeoNumberShort.class
+#	new file:   bin/at/neonartworks/neolib/math/number/Sign.class
+#	new file:   bin/at/neonartworks/neolib/password/NeoCrypt.class
+#	new file:   bin/at/neonartworks/neolib/test/Test.class
+#	modified:   bin/at/neonartworks/neolib/test/TestNeoLib.class
+#	modified:   src/at/neonartworks/neolib/NeoMap.java
+#	modified:   src/at/neonartworks/neolib/NeoPath.java
+#	modified:   src/at/neonartworks/neolib/NeoVoro.java
+#	modified:   src/at/neonartworks/neolib/file/NeoDownload.java
+#	modified:   src/at/neonartworks/neolib/file/NeoFileHandler.java
+#	modified:   src/at/neonartworks/neolib/file/NeoImage.java
+#	modified:   src/at/neonartworks/neolib/log/NeoLogger.java
+#	modified:   src/at/neonartworks/neolib/math/BigRandom.java
+#	modified:   src/at/neonartworks/neolib/math/NeoMath.java
+#	modified:   src/at/neonartworks/neolib/math/number/NeoNumberByte.java
+#	modified:   src/at/neonartworks/neolib/math/number/NeoNumberInt.java
+#	modified:   src/at/neonartworks/neolib/math/number/NeoNumberRegistry.java
+#	modified:   src/at/neonartworks/neolib/math/number/NeoNumberShort.java
+#	modified:   src/at/neonartworks/neolib/test/TestNeoLib.java
+#
+
