@@ -12,6 +12,7 @@ public class NeoNumberRegistry {
 	static{
 		register(NeoNumberByte.ByteZERO);
 		register(NeoNumberShort.ShortZERO);
+		register(NeoNumberInt.IntZERO);
 	}
 	/**
 	 * Register a new NeoNumber

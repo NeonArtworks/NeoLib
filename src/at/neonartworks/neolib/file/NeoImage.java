@@ -34,7 +34,7 @@ public class NeoImage {
 
 	public void convertGrayscale() {
 		try {
-			path.setPath();
+			path.pathDialoge();
 
 			File file = new File(path.getPath());
 			image = ImageIO.read(file);
@@ -56,7 +56,7 @@ public class NeoImage {
 					image2.setRGB(i, j, gray);
 				}
 			}
-			path.setPath();
+			path.pathDialoge();
 			File writeFile = new File(path.getPath());
 			file.createNewFile();
 			ImageIO.write(image2, "png", writeFile);
@@ -100,7 +100,7 @@ public class NeoImage {
 	 */
 
 	public void showImageFile() {
-		path.setPath();
+		path.pathDialoge();
 
 		File file = new File(path.getPath());
 		try {
@@ -198,7 +198,7 @@ public class NeoImage {
 
 	}
 	public void saveImage(BufferedImage image){
-		path.setPath();
+		path.pathDialoge();
 		
 		File file = new File(path.getPath());
 		

@@ -1,7 +1,11 @@
 package at.neonartworks.neolib.math.number;
 
+import at.neonartworks.neolib.exceptions.OverflowException;
+import at.neonartworks.neolib.math.NeoMath;
+
 public class NeoNumberInt implements INeoNumber<Integer> {
-	private int value;
+	private final int value;
+	public static final NeoNumberInt IntZERO = new NeoNumberInt(0);
 
 	public NeoNumberInt(int value) {
 		this.value = value;
@@ -9,34 +13,51 @@ public class NeoNumberInt implements INeoNumber<Integer> {
 
 	public NeoNumberInt(String s) {
 		int parse;
-		try{
+		try {
 			parse = Integer.parseInt(s);
+		} catch (NumberFormatException e) {
+			throw new OverflowException(s + " is not an Integer ", e);
 		}
-		catch(NumberFormatException e){
-			
-		}
+		value = parse;
 	}
 
 	public NeoNumberInt(INeoNumber<?> other) {
-		// TODO Auto-generated constructor stub
+		this(other.toString());
 	}
 
 	@Override
 	public INeoNumber<Integer> add(INeoNumber<?> other) {
-		// TODO Auto-generated method stub
-		return null;
+		NeoNumberInt otherAsInt = new NeoNumberInt(other);
+		int otherVal = otherAsInt.value;
+		boolean canAdd = (this.getSign() == Sign.MINUS ? leftToBottom():leftToTop()) >= otherVal;
+		if(!canAdd){
+			throw new OverflowException("Cannot add " + other + " to " + this);
+		}
+		return new NeoNumberInt(this.value + otherVal);
 	}
 
 	@Override
-	public INeoNumber<Integer> multiply(INeoNumber<?> other) {
-		// TODO Auto-generated method stub
-		return null;
+	public NeoNumberInt multiply(INeoNumber<?> other) {
+		NeoNumberInt otherInt = new NeoNumberInt(other);
+		boolean sameSign = this.hasSameSign(other);
+		short compare = (short) ((sameSign ? max() : min()) / otherInt.abs().value);
+		compare = NeoMath.abs(compare);
+		boolean canMult = compare >= this.abs().value;
+		if(!canMult){
+			throw new OverflowException("Cannot multiply short " + this + " with " + other);
+		}
+		short mult = (short) (this.value * otherInt.value);
+		return new NeoNumberInt(mult);
 	}
 
 	@Override
 	public INeoNumber<Integer> divide(INeoNumber<?> other) {
-		// TODO Auto-generated method stub
-		return null;
+		NeoNumberInt otherNum = new NeoNumberInt(other);
+		if (otherNum.value == 0) {
+			throw new ArithmeticException("Divide by 0");
+		}
+		byte divVal = (byte) (this.value / otherNum.value);
+		return new NeoNumberInt(divVal);
 	}
 
 	@Override
@@ -46,44 +67,38 @@ public class NeoNumberInt implements INeoNumber<Integer> {
 	}
 
 	@Override
-	public INeoNumber<Integer> abs() {
-		// TODO Auto-generated method stub
-		return null;
+	public NeoNumberInt abs() {
+		return new NeoNumberInt(NeoMath.abs(value));
 	}
 
 	@Override
 	public Integer getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 
 	@Override
 	public Integer leftToTop() {
-		// TODO Auto-generated method stub
-		return null;
+		return max() - value;
 	}
 
 	@Override
 	public Integer leftToBottom() {
-		// TODO Auto-generated method stub
-		return null;
+		return -(min() + value);
 	}
 
 	@Override
 	public Integer max() {
-		// TODO Auto-generated method stub
-		return null;
+		return Integer.MAX_VALUE;
 	}
 
 	@Override
 	public Integer min() {
-		// TODO Auto-generated method stub
-		return null;
+		return Integer.MIN_VALUE;
 	}
 
 	@Override
-	public INeoNumber<Integer> valueZero() {
-		return null;
+	public NeoNumberInt valueZero() {
+		return IntZERO;
 	}
 
 	@Override

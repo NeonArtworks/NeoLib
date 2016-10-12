@@ -5,7 +5,7 @@ import at.neonartworks.neolib.math.NeoMath;
 
 public class NeoNumberShort implements INeoNumber<Short> {
 	
-	public static NeoNumberShort ShortZERO = new NeoNumberShort((short) 0);
+	public static final NeoNumberShort ShortZERO = new NeoNumberShort((short) 0);
 	private final short value;
 
 	public NeoNumberShort(short value) {
@@ -43,7 +43,7 @@ public class NeoNumberShort implements INeoNumber<Short> {
 		short otherVal = otherShort.value;
 		boolean sameSign = this.hasSameSign(other);
 		short compare = (short) ((sameSign ? max() : min()) / otherShort.abs().value);
-		compare = NeoMath.absShort(compare);
+		compare = NeoMath.abs(compare);
 		boolean canMult = compare >= this.abs().value;
 		if(!canMult){
 			throw new OverflowException("Cannot multiply short " + this + " with " + other);
@@ -54,13 +54,17 @@ public class NeoNumberShort implements INeoNumber<Short> {
 
 	@Override
 	public NeoNumberShort divide(INeoNumber<?> other) {
-		// TODO Auto-generated method stub
-		return null;
+		NeoNumberShort otherNum = new NeoNumberShort(other);
+		if (otherNum.value == 0) {
+			throw new ArithmeticException("Divide by 0");
+		}
+		byte divVal = (byte) (this.value / otherNum.value);
+		return new NeoNumberShort(divVal);
 	}
 
 	@Override
 	public NeoNumberShort abs() {
-		return new NeoNumberShort(NeoMath.absShort(value));
+		return new NeoNumberShort(NeoMath.abs(value));
 	}
 
 	@Override
@@ -116,8 +120,7 @@ public class NeoNumberShort implements INeoNumber<Short> {
 
 	@Override
 	public INeoNumber<Short> valueZero() {
-		// TODO Auto-generated method stub
-		return null;
+		return ShortZERO;
 	}
 	@Override
 	public String toString() {

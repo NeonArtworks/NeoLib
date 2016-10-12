@@ -59,7 +59,7 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 		// min/other.abs sein.
 		boolean hasSign = hasSameSign(otherAsNum);
 		byte compareValue = (byte) ((hasSign ? max() : min()) / otherAsNum.abs().value);
-		compareValue = NeoMath.absByte(compareValue);
+		compareValue = NeoMath.abs(compareValue);
 		boolean canMult = this.abs().value <= compareValue;
 		if (!canMult) {
 			throw new OverflowException("Overflow when multiplying " + other + " with " + this + " As Byte");
@@ -100,7 +100,7 @@ public class NeoNumberByte implements INeoNumber<Byte> {
 
 	@Override
 	public NeoNumberByte abs() {
-		return new NeoNumberByte(NeoMath.absByte(value));
+		return new NeoNumberByte(NeoMath.abs(value));
 	}
 
 	@Override

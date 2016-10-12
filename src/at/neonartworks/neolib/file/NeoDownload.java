@@ -19,7 +19,7 @@ public class NeoDownload extends NeoPath{
 	
 	public NeoDownload(){
 		path = new NeoPath();
-		path.setPath();
+		path.pathDialoge();
 	}
 	/**
 	 * 

@@ -21,7 +21,7 @@ public class NeoMap {
 
 	public NeoMap() {
 		path = new NeoPath();
-		path.setPath();
+		path.pathDialoge();
 	}
 
 	/**

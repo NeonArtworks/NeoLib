@@ -18,7 +18,7 @@ public class NeoMath {
 	 * @param a
 	 * @return
 	 */
-	public static long absLong(long a) {
+	public static long abs(long a) {
 		if (a >= 0) {
 			return a;
 		}
@@ -36,7 +36,7 @@ public class NeoMath {
 	 * @param a
 	 * @return
 	 */
-	public static int absInt(int a) {
+	public static int abs(int a) {
 		if (a >= 0) {
 			return a;
 		}
@@ -54,7 +54,7 @@ public class NeoMath {
 	 * @param a
 	 * @return
 	 */
-	public static short absShort(short a) {
+	public static short abs(short a) {
 		if (a >= 0) {
 			return a;
 		}
@@ -72,7 +72,7 @@ public class NeoMath {
 	 * @param a
 	 * @return
 	 */
-	public static byte absByte(byte a) {
+	public static byte abs(byte a) {
 		if (a >= 0) {
 			return a;
 		}
@@ -250,7 +250,7 @@ public class NeoMath {
 	 * @param values
 	 * @return
 	 */
-	public static double sumDouble(double... values) {
+	public static double sum(double... values) {
 		double sum = 0;
 		for (double d : values) {
 			sum += d;
@@ -264,7 +264,7 @@ public class NeoMath {
 	 * @param values
 	 * @return
 	 */
-	public static BigInteger sumBigInteger(BigInteger... values) {
+	public static BigInteger sum(BigInteger... values) {
 		BigInteger sum = BigInteger.ZERO;
 		for (BigInteger bInt : values) {
 			sum = sum.add(bInt);
@@ -278,7 +278,7 @@ public class NeoMath {
 	 * @param values
 	 * @return
 	 */
-	public static BigDecimal sumBigDecimal(BigDecimal... values) {
+	public static BigDecimal sum(BigDecimal... values) {
 		BigDecimal sum = BigDecimal.ZERO;
 		for (BigDecimal bInt : values) {
 			sum = sum.add(bInt);
@@ -294,7 +294,7 @@ public class NeoMath {
 	 * @param reduce
 	 * @return
 	 */
-	public static INeoNumber<?> sumNeoNumber(INeoNumber<?>... numbers) {
+	public static INeoNumber<?> sum(INeoNumber<?>... numbers) {
 		boolean needDecimal = false;
 		int size = 0;
 		for (INeoNumber<?> nn : numbers) {
@@ -312,14 +312,13 @@ public class NeoMath {
 		for (INeoNumber<?> regNum : NeoNumberRegistry.getAllNumbers()) {
 			if (regNum.getMaxSize() >= size) {
 				if (!needDecimal || regNum.hasDecimals()) {
-					int newSize = regNum.getMaxSize();
-					int oldSize = format.getMaxSize();
-					if (regNum.getMaxSize() > format.getMaxSize()) {
+					if (format.getMaxSize() >= size && regNum.getMaxSize() < format.getMaxSize()) {
 						format = regNum;
 					}
 				}
 			}
 		}
+		format = format.valueZero();
 		for (INeoNumber<?> num : numbers) {
 			format = format.add(num);
 		}
@@ -334,7 +333,7 @@ public class NeoMath {
 	 * @param reduce
 	 * @return
 	 */
-	public static INeoNumber<?> sumNeoNumber(List<INeoNumber<?>> numbers) {
-		return sumNeoNumber(numbers.toArray(new INeoNumber<?>[numbers.size()]));
+	public static INeoNumber<?> sum(List<INeoNumber<?>> numbers) {
+		return sum(numbers.toArray(new INeoNumber<?>[numbers.size()]));
 	}
 }

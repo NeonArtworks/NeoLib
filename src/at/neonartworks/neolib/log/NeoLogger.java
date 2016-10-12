@@ -1,9 +1,5 @@
 package at.neonartworks.neolib.log;
 
-import static at.neonartworks.neolib.log.LoggerLevel.ALERT;
-import static at.neonartworks.neolib.log.LoggerLevel.ERROR;
-import static at.neonartworks.neolib.log.LoggerLevel.INFO;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +11,6 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import at.neonartworks.neolib.NeoPath;
-import at.neonartworks.neolib.NeoUI;
 
 /**
  * 
@@ -30,8 +25,6 @@ import at.neonartworks.neolib.NeoUI;
 public class NeoLogger {
 
 	private ArrayList<String> log = new ArrayList<String>();
-	private String logPath;
-	private JFrame saveFrame;
 	private BufferedWriter writer;
 	private NeoPath path;
 
@@ -43,7 +36,7 @@ public class NeoLogger {
 	}
 
 	public void setLogFile() {
-		path.setPath();
+		path.pathDialoge();
 	}
 
 	/**

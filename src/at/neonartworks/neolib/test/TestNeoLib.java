@@ -158,7 +158,7 @@ public class TestNeoLib {
 		list.add(new NeoNumberByte((byte) 25));
 		list.add(new NeoNumberByte("123"));
 		list.add(new NeoNumberShort((short) 12345));
-		INeoNumber<?> sum = NeoMath.sumNeoNumber(list);
+		INeoNumber<?> sum = NeoMath.sum(list);
 		System.out.println(sum.getClass() + " " + sum);
 	}
 

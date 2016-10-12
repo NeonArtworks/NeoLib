@@ -163,20 +163,20 @@ public class BigRandom {
 					// Difference is smaller than Long
 					long lMax = difference.longValueExact();
 					long rand = random.nextLong() % lMax;
-					rand = absLong(rand);
+					rand = abs(rand);
 					sb.insert(0, rand);
 					// End Loop, because no more randomising is needed
 					break;
 				}
 				long rand = random.nextLong();
 				rand = rand % LENGTH_LONG;
-				rand = absLong(rand);
+				rand = abs(rand);
 				sb = NeoMath.fillLongWith0(rand, 18, sb);
 				difference = difference.divide(powofTen18);
 			} else {
 				long lMax = difference.longValueExact();
 				long rand = random.nextLong() % lMax;
-				rand = absLong(rand);
+				rand = abs(rand);
 				sb.insert(0, rand);
 				// End Loop, because no more randomising is needed
 				break;

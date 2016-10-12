@@ -17,7 +17,9 @@ public class NeoPath  extends NeoUI{
 	public NeoPath(){
 		
 	}
-	
+	public void setPath(String newPath){
+		this.path = newPath;
+	}
 	public NeoPath(String path){
 		this.path = path;
 	}
@@ -33,7 +35,7 @@ public class NeoPath  extends NeoUI{
 	 * 
 	 * Sets the file path with an integrated FileChooser.
 	 */
-	public void setPath(){
+	public void pathDialoge(){
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Choose a File");   
 
