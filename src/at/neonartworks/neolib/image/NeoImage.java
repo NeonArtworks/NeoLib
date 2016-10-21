@@ -34,7 +34,7 @@ public class NeoImage extends NeoPath {
 		BufferedImage image;
 		BufferedImage image2;
 		try {
-			setPath();
+			pathDialoge();
 
 			File file = new File(getPath());
 			image = ImageIO.read(file);
@@ -56,7 +56,7 @@ public class NeoImage extends NeoPath {
 					image2.setRGB(i, j, gray);
 				}
 			}
-			setPath();
+			pathDialoge();
 			File writeFile = new File(getPath());
 			file.createNewFile();
 			ImageIO.write(image2, "png", writeFile);
@@ -75,7 +75,7 @@ public class NeoImage extends NeoPath {
 	public BufferedImage convertGrayscaleReturn() {
 		BufferedImage image;
 		BufferedImage image2 = null;
-		setPath();
+		pathDialoge();
 		int x = 0;
 		int y = 0;
 		File file = new File(getPath());
@@ -151,7 +151,7 @@ public class NeoImage extends NeoPath {
 	public void showImage() {
 		BufferedImage image;
 		BufferedImage image2;
-		setPath();
+		pathDialoge();
 
 		File file = new File(getPath());
 		try {
@@ -179,7 +179,7 @@ public class NeoImage extends NeoPath {
 	public BufferedImage loadImage() {
 		BufferedImage image;
 		BufferedImage image2 = null;
-		setPath();
+		pathDialoge();
 
 		File file = new File(getPath());
 		try {
@@ -315,7 +315,7 @@ public class NeoImage extends NeoPath {
 	 */
 
 	public void saveImage(BufferedImage image) {
-		setPath();
+		pathDialoge();
 		if (getPath().contains(".png")) {
 			File file = new File(getPath());
 			try {

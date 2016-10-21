@@ -282,7 +282,7 @@ public class NeoVoro extends NeoUI {
 	}
 
 	private void saveAsVoronoi() {
-		path.setPath();
+		path.pathDialoge();
 		File output = new File(path.getPath());
 		try {
 			output.createNewFile();

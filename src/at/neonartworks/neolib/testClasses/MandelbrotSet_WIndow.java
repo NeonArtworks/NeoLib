@@ -271,7 +271,7 @@ public class MandelbrotSet_WIndow extends JFrame {
 				int index = cbLoadSave.getSelectedIndex();
 
 				if (index == 0) {
-					nPath.setPath();
+					nPath.pathDialoge();
 					try {
 						reader = new BufferedReader(new FileReader(nPath
 								.getPath()));
@@ -325,7 +325,7 @@ public class MandelbrotSet_WIndow extends JFrame {
 				} else if (index == 1) {
 					String path;
 
-					nPath.setPath();
+					nPath.pathDialoge();
 
 					if (nPath.getPath().contains(".txt")) {
 						path = nPath.getPath();

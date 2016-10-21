@@ -37,7 +37,7 @@ public class NeoFileHandler extends NeoUI {
 	 * 
 	 */
 	public void setFile() {
-		path.setPath();
+		path.pathDialoge();
 		filPath = path.getPath();
 	}
 

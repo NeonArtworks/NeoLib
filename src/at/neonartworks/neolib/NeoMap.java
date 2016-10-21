@@ -21,7 +21,7 @@ public class NeoMap extends NeoPath{
 	
 	public NeoMap(){
 		path = new NeoPath();
-		path.setPath();
+		path.pathDialoge();
 	}
 	/**
 	 * Getters and Setters for Latitude and Longitude!

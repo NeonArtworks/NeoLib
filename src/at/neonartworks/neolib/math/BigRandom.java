@@ -252,13 +252,13 @@ public class BigRandom {
 //			long time = System.nanoTime();
 			if (difference.compareTo(MAX_LONG_VALUE.multiply(pow10Acc)) >= 0) {
 				difference = difference.subtract(MAX_LONG_VALUE.multiply(pow10Acc));
-				BigInteger addOffset = longToBigInt(absLong(random.nextLong())).multiply(pow10Acc);
+				BigInteger addOffset = longToBigInt(abs(random.nextLong())).multiply(pow10Acc);
 				offset = offset.add(addOffset);
 			} else {
 				long diffLong = difference.divide(pow10Acc).longValue();
 				difference = BigInteger.ZERO;
 				long l = random.nextLong();
-				l = absLong(l);
+				l = abs(l);
 				l = l % diffLong;
 				offset = offset.add(longToBigInt(l).multiply(pow10Acc));
 			}
@@ -277,13 +277,13 @@ public class BigRandom {
 //			long time = System.nanoTime();
 			if (difference.compareTo(MAX_LONG_VALUE) >= 0) {
 				difference = difference.subtract(MAX_LONG_VALUE);
-				BigInteger addOffset = longToBigInt(absLong(random.nextLong()));
+				BigInteger addOffset = longToBigInt(abs(random.nextLong()));
 				offset = offset.add(addOffset);
 			} else {
 				long diffLong = difference.longValue();
 				difference = BigInteger.ZERO;
 				long l = random.nextLong();
-				l = absLong(l);
+				l = abs(l);
 				l = l % diffLong;
 				offset = offset.add(longToBigInt(l));
 			}
