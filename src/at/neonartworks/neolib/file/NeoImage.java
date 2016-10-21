@@ -10,7 +10,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import at.neonartworks.neolib.NeoPath;
-import at.neonartworks.neolib.NeoPreview;
+import at.neonartworks.neolib.image.NeoPreview;
 
 public class NeoImage {
 
