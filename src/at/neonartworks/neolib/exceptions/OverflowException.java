@@ -6,7 +6,7 @@ package at.neonartworks.neolib.exceptions;
  * @author Alexander Daum
  *
  */
-public class OverflowException extends RuntimeException {
+public class OverflowException extends IllegalArgumentException {
 
 	/**
 	 * 
