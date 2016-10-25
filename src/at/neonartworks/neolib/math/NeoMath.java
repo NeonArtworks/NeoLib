@@ -336,4 +336,39 @@ public class NeoMath {
 	public static INeoNumber<?> sum(List<INeoNumber<?>> numbers) {
 		return sum(numbers.toArray(new INeoNumber<?>[numbers.size()]));
 	}
+
+	/**
+	 * Rounds a double number to a specified number of digits behind the comma.
+	 * The rounding algorithm is specified by the RoundingContext
+	 * 
+	 * @param value
+	 *            The value to be rounded
+	 * @param digits
+	 *            The number of digits behind the comma
+	 * @param rc
+	 *            The RoundingContext for the algorithm
+	 * @return
+	 */
+	public static double round(double value, int digits, RoundingContext rc) {
+		if (String.valueOf(value).length() > 16)
+			digits = 0;
+		if (digits > 16)
+			digits = 16;
+		double lastDigits = value % 10;
+		double tmp = value - lastDigits;
+		double pow10 = Math.pow(10, digits);
+		tmp += rc.round(lastDigits * pow10) / pow10;
+		return tmp;
+	}
+
+	/**
+	 * Calculates the power of 2 for int pow.
+	 * 
+	 * @param pow
+	 * 
+	 * @return 2 ^ pow
+	 */
+	public static long powerOfTwo(int pow) {
+		return 1L << pow;
+	}
 }

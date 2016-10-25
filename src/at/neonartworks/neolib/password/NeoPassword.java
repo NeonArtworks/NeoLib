@@ -2,7 +2,6 @@ package at.neonartworks.neolib.password;
 
 import java.util.Random;
 
-import at.neonartworks.neolib.NeoCrypt;
 
 /**
  * 

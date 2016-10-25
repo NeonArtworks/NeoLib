@@ -14,6 +14,7 @@ import at.neonartworks.neolib.exceptions.OverflowException;
 import at.neonartworks.neolib.math.BigRandom;
 import at.neonartworks.neolib.math.NeoMath;
 import at.neonartworks.neolib.math.NeoRandom;
+import at.neonartworks.neolib.math.RoundingContext;
 import at.neonartworks.neolib.math.number.INeoNumber;
 import at.neonartworks.neolib.math.number.NeoNumberByte;
 import at.neonartworks.neolib.math.number.NeoNumberRegistry;
@@ -152,14 +153,13 @@ public class TestNeoLib {
 	// }
 
 	@Test
-	public void testNeoNumberAdd() {
-		ArrayList<INeoNumber<?>> list = new ArrayList<INeoNumber<?>>();
-		list.add(new NeoNumberByte((byte) 5));
-		list.add(new NeoNumberByte((byte) 25));
-		list.add(new NeoNumberByte("123"));
-		list.add(new NeoNumberShort((short) 12345));
-		INeoNumber<?> sum = NeoMath.sum(list);
-		System.out.println(sum.getClass() + " " + sum);
+	public void testRound() {
+		assertEquals(3.1D, NeoMath.round(3.1234, 1, RoundingContext.roundTowardsZero), 0.001D);
+		assertEquals(3.7D, NeoMath.round(3.7934, 1, RoundingContext.roundTowardsZero), 0.001D);
+
+		assertEquals(4D, NeoMath.round(3.6234, 0, RoundingContext.roundToNearest), 0.001D);
+		assertEquals(3.2D, NeoMath.round(3.1734, 1, RoundingContext.roundToNearest), 0.001D);
+		assertEquals(3.1D, NeoMath.round(3.1434, 1, RoundingContext.roundToNearest), 0.001D);
 	}
 
 }
