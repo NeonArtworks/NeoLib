@@ -1,10 +1,13 @@
 package at.neonartworks.neolib.math;
 
+import static at.neonartworks.neolib.math.NeoMath.abs;
+import static at.neonartworks.neolib.math.NeoMath.bigIntegerLenght;
+import static at.neonartworks.neolib.math.NeoMath.longToBigInt;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
-import static at.neonartworks.neolib.math.NeoMath.*;
 
 /**
  * A random for BigDecimal / BigInteger <br>
@@ -80,7 +83,7 @@ public class BigRandom {
 	/**
 	 * Generates a random BigDecimal between DefaultFrom and DefaultTo, where it
 	 * doen't matter which is the largest. Accuracy defines how many digits
-	 * behind the comma are calculated. A negative Accuracy means, that 
+	 * behind the comma are calculated. A negative Accuracy means, that
 	 * 
 	 * @param accuracy
 	 * @return
@@ -88,11 +91,11 @@ public class BigRandom {
 	public BigDecimal nextBDecimal(int accuracy) {
 		return nextBDecimal(this.from, this.to, accuracy);
 	}
-	
+
 	/**
-	 * Generates a random BigDecimal between from and to, where it
-	 * doen't matter which is the largest. Accuracy defines how many digits
-	 * behind the comma are calculated. A negative Accuracy means, that 
+	 * Generates a random BigDecimal between from and to, where it doen't matter
+	 * which is the largest. Accuracy defines how many digits behind the comma
+	 * are calculated. A negative Accuracy means, that
 	 * 
 	 * @param accuracy
 	 * @return
@@ -104,30 +107,31 @@ public class BigRandom {
 		BigDecimal scaledRandom = new BigDecimal(unscaledRandom, accuracy);
 		return scaledRandom;
 	}
+
 	/**
 	 * Generates a random BigInteger between from and to. It doen't matter which
 	 * one is the largest. The accuracy is automatically computed, so that it
 	 * needs aprox. 0.25 ms at max, if you need higher performance or higher
-	 * accuracy use:
-	 * <code>nextBInt(int accuracy)</code> <br>
+	 * accuracy use: <code>nextBInt(int accuracy)</code> <br>
 	 * 
 	 * @return A Random BigInteger between from and to
 	 */
-	public BigInteger nextBInt(){
+	public BigInteger nextBInt() {
 		return nextBInt(this.from.toBigInteger(), this.to.toBigInteger());
 	}
+
 	/**
 	 * Generates a random BigInteger between from and to. It doen't matter which
 	 * one is the largest. The accuracy is automatically computed, so that it
 	 * needs aprox. 25 ms at max, if you need higher performance or higher
-	 * accuracy use:
-	 * <code>nextBInt(int accuracy)</code> <br>
+	 * accuracy use: <code>nextBInt(int accuracy)</code> <br>
 	 * 
 	 * @return A Random BigInteger between from and to
 	 */
-	public BigInteger nextBIntAccurate(){
+	public BigInteger nextBIntAccurate() {
 		return nextBIntAccurate(this.from.toBigInteger(), this.to.toBigInteger());
 	}
+
 	/**
 	 * Generates a random BigInteger between DefaultFrom and DefaultTo, where
 	 * all Decimal parts are lost. It doen't matter which one is the largest.
@@ -174,6 +178,7 @@ public class BigRandom {
 		accuracy = Math.max(length - 19, 3);
 		return min.add(nextBInt(difference, accuracy - 3));
 	}
+
 	/**
 	 * Generates a random BigInteger between from and to. It doen't matter which
 	 * one is the largest. The accuracy is automatically computed, so that it
@@ -243,13 +248,13 @@ public class BigRandom {
 		if (difference.equals(BigInteger.ZERO)) {
 			throw new IllegalArgumentException("Difference of from and to is 0");
 		}
-		if(accuracy == 0){
+		if (accuracy == 0) {
 			return nextBIntExact(difference);
 		}
-		BigInteger pow10Acc = powerOfTen(accuracy);
+		BigInteger pow10Acc = NeoMath.bigPowerOfTen(accuracy);
 		BigInteger offset = BigInteger.ZERO;
 		while (difference.compareTo(BigInteger.ZERO) > 0) {
-//			long time = System.nanoTime();
+			// long time = System.nanoTime();
 			if (difference.compareTo(MAX_LONG_VALUE.multiply(pow10Acc)) >= 0) {
 				difference = difference.subtract(MAX_LONG_VALUE.multiply(pow10Acc));
 				BigInteger addOffset = longToBigInt(abs(random.nextLong())).multiply(pow10Acc);
@@ -262,19 +267,19 @@ public class BigRandom {
 				l = l % diffLong;
 				offset = offset.add(longToBigInt(l).multiply(pow10Acc));
 			}
-//			long needed = System.nanoTime() - time;
-//			System.out.println(needed);
+			// long needed = System.nanoTime() - time;
+			// System.out.println(needed);
 		}
 		return offset;
 	}
-	
+
 	private BigInteger nextBIntExact(BigInteger difference) {
 		if (difference.equals(BigInteger.ZERO)) {
 			throw new IllegalArgumentException("Difference of from and to is 0");
 		}
 		BigInteger offset = BigInteger.ZERO;
 		while (difference.compareTo(BigInteger.ZERO) > 0) {
-//			long time = System.nanoTime();
+			// long time = System.nanoTime();
 			if (difference.compareTo(MAX_LONG_VALUE) >= 0) {
 				difference = difference.subtract(MAX_LONG_VALUE);
 				BigInteger addOffset = longToBigInt(abs(random.nextLong()));
@@ -287,12 +292,11 @@ public class BigRandom {
 				l = l % diffLong;
 				offset = offset.add(longToBigInt(l));
 			}
-//			long needed = System.nanoTime() - time;
-//			System.out.println(needed);
+			// long needed = System.nanoTime() - time;
+			// System.out.println(needed);
 		}
 		return offset;
 	}
-
 
 	/**
 	 * @return The defaultFrom value
@@ -385,7 +389,5 @@ public class BigRandom {
 		this.to = new BigDecimal(to);
 		return this;
 	}
-
-
 
 }

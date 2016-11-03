@@ -110,7 +110,7 @@ public class NeoMath {
 	 * @param pow
 	 * @return
 	 */
-	public static BigInteger powerOfTen(int pow) {
+	public static BigInteger bigPowerOfTen(int pow) {
 		return BigInteger.TEN.pow(pow);
 	}
 
@@ -350,8 +350,6 @@ public class NeoMath {
 	 * @return
 	 */
 	public static double round(double value, int digits, RoundingContext rc) {
-		if (String.valueOf(value).length() > 16)
-			digits = 0;
 		if (digits > 16)
 			digits = 16;
 		double lastDigits = value % 10;
@@ -370,5 +368,19 @@ public class NeoMath {
 	 */
 	public static long powerOfTwo(int pow) {
 		return 1L << pow;
+	}
+
+	/**
+	 * Calculates the power of 10, uses long for convienience
+	 * 
+	 * @param pow
+	 * @return 10^pow
+	 */
+	public static long powerOfTen(int pow) {
+		long ret = 1L;
+		for (int i = 0; i < pow; i++) {
+			ret = ret * 10L;
+		}
+		return ret;
 	}
 }

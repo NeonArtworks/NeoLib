@@ -161,5 +161,10 @@ public class TestNeoLib {
 		assertEquals(3.2D, NeoMath.round(3.1734, 1, RoundingContext.roundToNearest), 0.001D);
 		assertEquals(3.1D, NeoMath.round(3.1434, 1, RoundingContext.roundToNearest), 0.001D);
 	}
+	
+	@Test
+	public void testPow10(){
+		
+	}
 
 }
