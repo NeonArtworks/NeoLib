@@ -1,5 +1,18 @@
 package at.neonartworks.neolib.math;
 
+/**
+ * An Interface for WeightedRandom Algorythms. Typically a Class which
+ * implements this, will define the Weight Type, but will also have generic
+ * Parameters for the Element Type, except only one type of Element (e.g.
+ * String) should be stored
+ * 
+ * @author Alexander
+ *
+ * @param <W>
+ *            The Weight Type
+ * @param <E>
+ *            The Element Type
+ */
 public interface IWeightedRandom<W, E> {
 	/**
 	 * Adds an Element with a specific Weight. The Weight defines how often this
