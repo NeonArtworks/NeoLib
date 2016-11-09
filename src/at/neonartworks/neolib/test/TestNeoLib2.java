@@ -2,6 +2,7 @@ package at.neonartworks.neolib.test;
 
 import static org.junit.Assert.*;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -9,6 +10,7 @@ import org.junit.Test;
 
 import at.neonartworks.neolib.math.NeoComplex;
 import at.neonartworks.neolib.math.NeoPoint;
+import at.neonartworks.neolib.util.ArrayUtil;
 import at.neonartworks.neolib.util.CollectionUtil;
 
 public class TestNeoLib2 {
@@ -29,7 +31,6 @@ public class TestNeoLib2 {
 		allStrings.add("ab");
 		allStrings.add("ode");
 		assertEquals(allStrings, CollectionUtil.getAllClassEqual(String.class, c));
-		
 	}
 
 }

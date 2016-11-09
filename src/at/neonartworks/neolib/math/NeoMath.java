@@ -2,6 +2,7 @@ package at.neonartworks.neolib.math;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
 import at.neonartworks.neolib.math.number.INeoNumber;
@@ -382,5 +383,91 @@ public class NeoMath {
 			ret = ret * 10L;
 		}
 		return ret;
+	}
+
+	/**
+	 * Caclulates the remainder division of byte[], like value % mod
+	 * 
+	 * @param value
+	 *            The value
+	 * @param mod
+	 *            the mod value
+	 * @return
+	 */
+	public static byte[] remainder(byte[] value, byte[] mod) {
+		BigInteger v = new BigInteger(value);
+		BigInteger m = new BigInteger(mod);
+		return v.remainder(m).toByteArray();
+	}
+
+	/**
+	 * Caclulates the modolo division of byte[], like value % mod, except the
+	 * result is always positive
+	 * 
+	 * @param value
+	 *            The value
+	 * @param mod
+	 *            the mod value
+	 * @return
+	 */
+	public static byte[] mod(byte[] value, byte[] mod) {
+		BigInteger v = new BigInteger(value);
+		BigInteger m = new BigInteger(mod);
+		return v.mod(m).toByteArray();
+	}
+
+	public static int[] byteArrayToIntArray(byte[] array) {
+		int[] result = new int[array.length / 4 + (array.length % 4 == 0 ? 0 : 1)];
+		for (int i = 0; i < result.length - 1; i++) {
+			byte[] section = Arrays.copyOfRange(array, array.length - 1 - ((i + 1) * 4), array.length - 1 - (i * 4));
+			result[result.length - i - 1] = byteArrayToIntIgnoreLast(section);
+		}
+		int length = array.length % 4 == 0 ? 4 : array.length % 4;
+		byte[] section = Arrays.copyOfRange(array, 0, array.length % 4);
+		result[0] = byteArrayToIntIgnoreLast(section);
+		return result;
+	}
+
+	/**
+	 * Converts a byte Array to an int. Only works when array has 4 or less
+	 * values, else this method will ignore the first entries. <br>
+	 * In the Array the most important bits have to be in index 0. The sign of
+	 * the resulting int is equal to the sign of the byte in index 0
+	 * 
+	 * @param array
+	 *            A byte Array which is converted to an int
+	 * @return
+	 * @see {@link #byteArrayToIntIgnoreLast(byte[])}
+	 */
+	public static int byteArrayToInt(byte[] array) {
+		int result = 0;
+		for (int i = 0; i < array.length; i++) {
+			result = result << 16;
+			result = result | array[i];
+		}
+		return result;
+	}
+
+	/**
+	 * Converts a byte Array to an int. Only works when array has 4 or less
+	 * values, else this method will ignore the last entries. <br>
+	 * In the Array the most important bits have to be in index 0. The sign of
+	 * the resulting int is equal to the sign of the byte in index 0
+	 * 
+	 * @param array
+	 *            A byte Array which is converted to an int
+	 * @return
+	 * @see {@link #byteArrayToInt(byte[])}
+	 */
+	public static int byteArrayToIntIgnoreLast(byte[] array) {
+		int result = 0;
+		result = result + Byte.toUnsignedInt(array[0]);
+		result = result << 16;
+		result = result + Byte.toUnsignedInt(array[1]);
+		result = result << 16;
+		result = result + Byte.toUnsignedInt(array[2]);
+		result = result << 16;
+		result = result + Byte.toUnsignedInt(array[3]);
+		return result;
 	}
 }

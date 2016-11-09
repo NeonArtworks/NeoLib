@@ -31,25 +31,26 @@ public class TestNeoLib {
 
 	@Test
 	public void testBigIntRandom() {
-		BigInteger min = new BigInteger("-1000000000000000000000000000000");
-		BigInteger max = new BigInteger("1000000000000000000000000000000");
+		// length = 32
+		BigInteger min = NeoMath.bigPowerOfTen(100000).multiply(new BigInteger(new byte[] { (byte) 0xFF }));
+		BigInteger max = NeoMath.bigPowerOfTen(100000);
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
+		BigInteger sum = BigInteger.ZERO;
 		// r.setThreadSafe(true);
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			BigInteger random = r.nextBInt();
-			// System.out.println(random);
-			if (random.compareTo(min) < 0 || random.compareTo(max) > 0) {
-				fail("BigInt " + random + " not in range");
-			}
+			sum = sum.add(random);
 		}
+		System.out.println("Average= " + sum.divide(new BigInteger("1000000")));
+
 	}
 
 	@Test
 	public void testBigDecRandom() {
-		BigDecimal min = new BigDecimal("-12345678901234567890.123456789");
-		BigDecimal max = new BigDecimal("12345678901234567890.123456789");
+		BigDecimal min = new BigDecimal("-123456789012345678900.123456789");
+		BigDecimal max = new BigDecimal("123456789012345678900.123456789");
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			BigDecimal random = r.nextBDecimal(2);
 			// System.out.println(random);
 			if (random.compareTo(min) < 0 || random.compareTo(max) > 0) {
@@ -161,6 +162,5 @@ public class TestNeoLib {
 		assertEquals(3.2D, NeoMath.round(3.1734, 1, RoundingContext.roundToNearest), 0.001D);
 		assertEquals(3.1D, NeoMath.round(3.1434, 1, RoundingContext.roundToNearest), 0.001D);
 	}
-
 
 }
