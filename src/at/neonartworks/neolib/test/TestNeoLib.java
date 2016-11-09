@@ -32,8 +32,8 @@ public class TestNeoLib {
 	@Test
 	public void testBigIntRandom() {
 		// length = 32
-		BigInteger min = NeoMath.bigPowerOfTen(100000).multiply(new BigInteger(new byte[] { (byte) 0xFF }));
-		BigInteger max = NeoMath.bigPowerOfTen(100000);
+		BigInteger min = NeoMath.bigPowerOfTen(1000).multiply(new BigInteger(new byte[] { (byte) 0xFF }));
+		BigInteger max = NeoMath.bigPowerOfTen(1000);
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
 		BigInteger sum = BigInteger.ZERO;
 		// r.setThreadSafe(true);
@@ -41,7 +41,8 @@ public class TestNeoLib {
 			BigInteger random = r.nextBInt();
 			sum = sum.add(random);
 		}
-		System.out.println("Average= " + sum.divide(new BigInteger("1000000")));
+		System.out.println("Difference= " + max.subtract(min).bitCount());
+		System.out.println("Average=    " + sum.divide(new BigInteger("1000000")).bitCount());
 
 	}
 

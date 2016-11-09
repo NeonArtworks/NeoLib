@@ -20,7 +20,7 @@ public class NeoPoint {
 	}
 
 	/**
-	 * Constructor. Used in NeoPoly
+	 * Constructs a Point with Coordinates 0/0
 	 */
 	public NeoPoint() {
 

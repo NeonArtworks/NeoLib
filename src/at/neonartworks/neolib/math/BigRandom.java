@@ -161,11 +161,9 @@ public class BigRandom {
 		byte[] val = new byte[lengthOfArray + 1];
 		random.nextBytes(val);
 		int over = val[0];
-		int mask = over >> 31;
-		mask = mask & 0x00000080;
-		over = over & 0x0000007F;
-		over = over | mask;
+		over = over & 0xFF;
 		over = over >>> (8 - overflow);
+		val[0] = (byte) over;
 		offset = new BigInteger(val);
 		return offset.mod(difference);
 	}
@@ -176,7 +174,7 @@ public class BigRandom {
 	public BigDecimal getDefaultFrom() {
 		return from;
 	}
-
+	
 	/**
 	 * sets the new DefaultFrom value, used in all next methods, which don't
 	 * have additional parameters. <br>
