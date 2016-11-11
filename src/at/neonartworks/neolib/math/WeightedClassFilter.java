@@ -37,4 +37,9 @@ public class WeightedClassFilter implements IClassFilter {
 		return classes.get(o.getClass());
 	}
 
+	@Override
+	public void remove(Class<?>... classes) {
+
+	}
+
 }

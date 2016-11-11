@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import at.neonartworks.neolib.util.CollectionUtil;
+
 public class UniqueIdentifier {
 
-	private static List<Integer> ids = new ArrayList<Integer>();
+	private List<Integer> ids = new ArrayList<Integer>();
 	private static final int range = 100000;
-	private static int index = 0;
+	private int index = 0;
 
-	private UniqueIdentifier() {
-
+	public UniqueIdentifier(int range) {
+		CollectionUtil.numbers(0, range, ids);
+		Collections.shuffle(ids);
 	}
 
-	static {
-		for (int i = 0; i < range; i++) {
-			ids.add(i);
-		}
+	public UniqueIdentifier() {
+		CollectionUtil.numbers(0, range, ids);
 		Collections.shuffle(ids);
 	}
 
@@ -26,7 +27,7 @@ public class UniqueIdentifier {
 	 * 
 	 * @return Integer
 	 */
-	public static int getIdentifier() {
+	public int getIdentifier() {
 		if (index > ids.size() - 1)
 			index = 0;
 		return ids.get(index++);

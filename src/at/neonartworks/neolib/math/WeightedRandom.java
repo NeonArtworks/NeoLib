@@ -25,7 +25,7 @@ public class WeightedRandom<E> implements IWeightedRandom<Double, E>{
 		this(new Random());
 	}
 	/**
-	 * Creates a new WeightedRandom with a random as Random
+	 * Creates a new WeightedRandom with a specific random
 	 * @param random The random to be used
 	 */
 	public WeightedRandom(Random random) {

@@ -442,7 +442,7 @@ public class NeoMath {
 	public static int byteArrayToInt(byte[] array) {
 		int result = 0;
 		for (int i = 0; i < array.length; i++) {
-			result = result << 16;
+			result = result << 8;
 			result = result | array[i];
 		}
 		return result;
@@ -461,13 +461,13 @@ public class NeoMath {
 	 */
 	public static int byteArrayToIntIgnoreLast(byte[] array) {
 		int result = 0;
-		result = result + Byte.toUnsignedInt(array[0]);
-		result = result << 16;
-		result = result + Byte.toUnsignedInt(array[1]);
-		result = result << 16;
-		result = result + Byte.toUnsignedInt(array[2]);
-		result = result << 16;
-		result = result + Byte.toUnsignedInt(array[3]);
+		result = result + (array[0] & 0xFF);
+		result = result << 8;
+		result = result + (array[1] & 0xFF);
+		result = result << 8;
+		result = result + (array[2] & 0xFF);
+		result = result << 8;
+		result = result + (array[3] & 0xFF);
 		return result;
 	}
 }

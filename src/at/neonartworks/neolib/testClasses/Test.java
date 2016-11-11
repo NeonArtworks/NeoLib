@@ -13,8 +13,8 @@ public class Test {
 		// mand = new Mandelbrot(1000, 1000, 1200, 400, 4, "lsd", 0, 0);
 		// mand.setMandelbrotColor(new Color(0, 0, 0));
 		//BufferedImage image = mand.getRenderedMandelbrot(); // Rendering the Mandelbrot
-		
-		System.out.println(UniqueIdentifier.getIdentifier());
+		UniqueIdentifier id = new UniqueIdentifier();
+		System.out.println(id.getIdentifier());
 		
 
 	}

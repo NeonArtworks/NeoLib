@@ -32,12 +32,12 @@ public class TestNeoLib {
 	@Test
 	public void testBigIntRandom() {
 		// length = 32
-		BigInteger min = NeoMath.bigPowerOfTen(1000).multiply(new BigInteger(new byte[] { (byte) 0xFF }));
-		BigInteger max = NeoMath.bigPowerOfTen(1000);
+		BigInteger min = BigInteger.ZERO;
+		BigInteger max = NeoMath.bigPowerOfTen(10000000);
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
 		BigInteger sum = BigInteger.ZERO;
 		// r.setThreadSafe(true);
-		for (int i = 0; i < 1000000; i++) {
+		for (int i = 0; i < 1; i++) {
 			BigInteger random = r.nextBInt();
 			sum = sum.add(random);
 		}

@@ -3,13 +3,33 @@ package at.neonartworks.neolib.math.mtrs;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MTRS is a subject in the HTL which is all about mesuring signals. This class
+ * offers many convienient methods to calculate some statistical values from
+ * discrete measuring result. In every Method comment there is also the german
+ * translation of the term, because the HTL is in Austria, where all the terms
+ * are explained in german
+ * 
+ * @author Alexander Daum
+ *
+ */
 public class MTRS_Math {
 	private final List<Double> values;
 
+	/**
+	 * Constructs a new MTRS_Math object which has all values in the List
+	 * 
+	 * @param values
+	 */
 	public MTRS_Math(List<Double> values) {
 		this.values = new ArrayList<Double>(values);
 	}
 
+	/**
+	 * Adds a Value to an existing List of values
+	 * 
+	 * @param value
+	 */
 	public void add(double value) {
 		this.values.add(value);
 	}
@@ -89,17 +109,19 @@ public class MTRS_Math {
 		diffSum /= (values.size() - 1);
 		return Math.sqrt(diffSum);
 	}
+
 	/**
 	 * 
 	 * @return The Confidence Interval (germ. Vertrauensbereich)
 	 * 
-	 * @param tValue The t value, to be found in a Table
- 	 */
-	public double convInterval(double tValue){
+	 * @param tValue
+	 *            The t value, to be found in a Table
+	 */
+	public double convInterval(double tValue) {
 		double stdDev = standardDeviation();
 		double result;
 		result = tValue / Math.sqrt(values.size());
 		return result * stdDev;
 	}
-	
+
 }

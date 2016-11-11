@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 
-import at.neonartworks.neolib.exceptions.ClassNotCompatibleException;
-
 public class CollectionUtil {
 	/**
 	 * Creates a List filled with all ints between from and to, both inclusive
@@ -21,6 +19,21 @@ public class CollectionUtil {
 	 */
 	public static Collection<Integer> numbers(int from, int to) {
 		return numbers(from, to, 1);
+	}
+
+	/**
+	 * Creates a List filled with all ints between from and to, both inclusive
+	 * 
+	 * @param from
+	 *            The smallest value in the list
+	 * @param to
+	 *            The biggest value in the list
+	 * @return a List with all in values in the range, e.g.
+	 *         <code>numbers(3,10)</code> returns a List with the values:
+	 *         3,4,5,6,7,8,9,10
+	 */
+	public static void numbers(int from, int to, Collection<Integer> list) {
+		numbers(from, to, 1, list);
 	}
 
 	/**
@@ -49,6 +62,32 @@ public class CollectionUtil {
 			list.add(i);
 		}
 		return list;
+	}
+
+	/**
+	 * Creates a List filled with all ints between from and to, both inclusive.
+	 * Between two ints there is a difference of step
+	 * 
+	 * @param from
+	 *            The smallest value in the list
+	 * @param to
+	 *            The biggest value in the list, may not be contained in the
+	 *            list if it doesn't fit the step
+	 * @param step
+	 *            The difference between two values
+	 * @return a List with all numbers in the range with a step of step. e.g
+	 *         <code>numbers(15,57,4)</code> returns a List with the values:
+	 *         15,19,23,27,31,35,39,43,47,51,55
+	 */
+	public static void numbers(int from, int to, int step, Collection<Integer> list) {
+		long length = (((to - from) / step) + 1);
+		if (length > Integer.MAX_VALUE) {
+			throw new IllegalArgumentException("Cannot add the value between " + from + " and " + to
+					+ " with a step of " + step + " to a List, because this would result in too many numbers");
+		}
+		for (int i = from; i <= to; i += step) {
+			list.add(i);
+		}
 	}
 
 	/**
@@ -112,6 +151,7 @@ public class CollectionUtil {
 	 *         Collection with: "a1","a2"
 	 * @throws ReflectiveOperationException
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> Collection<T> getAll(Predicate<T> condition, Collection<T> collection) {
 		Collection<T> ret;
 		try {
@@ -155,6 +195,7 @@ public class CollectionUtil {
 		return ret;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> Collection<T> getAllClassEqual(Class<T> targetClass, Collection<?> collection) {
 		Collection<T> ret;
 		try {
@@ -170,6 +211,7 @@ public class CollectionUtil {
 		return ret;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> Collection<T> getAllInstanceOf(Class<T> targetClass, Collection<?> collection) {
 		Collection<T> ret;
 		try {
