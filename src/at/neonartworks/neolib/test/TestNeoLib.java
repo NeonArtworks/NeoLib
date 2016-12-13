@@ -5,20 +5,13 @@ import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.Test;
 
-import at.neonartworks.neolib.exceptions.OverflowException;
 import at.neonartworks.neolib.math.BigRandom;
 import at.neonartworks.neolib.math.NeoMath;
 import at.neonartworks.neolib.math.NeoRandom;
 import at.neonartworks.neolib.math.RoundingContext;
-import at.neonartworks.neolib.math.number.INeoNumber;
-import at.neonartworks.neolib.math.number.NeoNumberByte;
-import at.neonartworks.neolib.math.number.NeoNumberRegistry;
-import at.neonartworks.neolib.math.number.NeoNumberShort;
 import at.neonartworks.neolib.password.NeoPassword;
 
 public class TestNeoLib {
@@ -33,7 +26,7 @@ public class TestNeoLib {
 	public void testBigIntRandom() {
 		// length = 32
 		BigInteger min = BigInteger.ZERO;
-		BigInteger max = NeoMath.bigPowerOfTen(10000000);
+		BigInteger max = NeoMath.bigPowerOfTen(1000000);
 		BigRandom r = new BigRandom().setDefaultFrom(min).setDefaultTo(max);
 		BigInteger sum = BigInteger.ZERO;
 		// r.setThreadSafe(true);
@@ -79,31 +72,6 @@ public class TestNeoLib {
 		System.out.println(decrypt);
 		assertEquals(orig, decrypt);
 
-	}
-
-	@Test
-	public void testNeoNumber() {
-		INeoNumber<Byte> num = new NeoNumberByte("25");
-		num = num.add(num);
-		assertEquals(50, num.getValue().byteValue());
-		assertEquals(Byte.class, num.getType());
-		num = num.multiply(new NeoNumberByte((byte) -1));
-		assertEquals(-50, num.getValue().byteValue());
-		boolean crashed = false;
-		try {
-			num.multiply(new NeoNumberByte((byte) 50));
-		} catch (OverflowException e) {
-			crashed = true;
-		}
-		assertEquals(true, crashed);
-	}
-
-	@Test
-	public void testNeoNumberRegistry() {
-		assertEquals(true, NeoNumberRegistry.isRegistered(NeoNumberByte.class));
-		assertEquals(true, NeoNumberRegistry.isRegistered(new NeoNumberByte((byte) 0)));
-		INeoNumber<Byte> nn = new NeoNumberByte((byte) 0);
-		assertEquals(true, NeoNumberRegistry.isRegistered(nn));
 	}
 
 	@Test

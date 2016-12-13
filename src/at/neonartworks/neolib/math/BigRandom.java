@@ -5,8 +5,6 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
 
-import com.sun.javafx.iio.common.SmoothMinifier;
-
 import at.neonartworks.neolib.util.ArrayUtil;
 
 /**
@@ -52,7 +50,8 @@ public class BigRandom {
 	/**
 	 * if threadSafe is true the random is a new SecureRandom, otherwise a new
 	 * Random. The random always gets constructed newly when this method is
-	 * invoked
+	 * invoked. <br>
+	 * <b> WARNING ThreadSafe Randoms are much slower (up to 100 times) </b>
 	 * 
 	 * @param threadSafe
 	 *            if this BigRandom should be threadSafe
@@ -148,10 +147,10 @@ public class BigRandom {
 	 * @return
 	 */
 	private BigInteger nextBInt(BigInteger difference) {
-		// XXX
 		if (difference.equals(BigInteger.ZERO)) {
 			return BigInteger.ZERO;
 		}
+		
 		BigInteger offset = BigInteger.ZERO;
 		// Anzahl an ganzen Bytes
 		int bitLength = difference.bitLength();
@@ -174,7 +173,7 @@ public class BigRandom {
 	public BigDecimal getDefaultFrom() {
 		return from;
 	}
-	
+
 	/**
 	 * sets the new DefaultFrom value, used in all next methods, which don't
 	 * have additional parameters. <br>
