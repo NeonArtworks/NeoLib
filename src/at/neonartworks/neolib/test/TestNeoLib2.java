@@ -31,13 +31,5 @@ public class TestNeoLib2 {
 		allStrings.add("ode");
 		assertEquals(allStrings, CollectionUtil.getAllClassEqual(String.class, c));
 	}
-	
-	@Test
-	public void MathConstructor(){
-		Constructor[] c = TestNeoLib2.class.getConstructors();
-		for(Constructor<?> con : c){
-			System.out.println(con);
-		}
-	}
 
 }
