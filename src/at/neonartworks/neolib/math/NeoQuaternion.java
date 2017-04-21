@@ -23,13 +23,13 @@ public class NeoQuaternion implements Cloneable, BasicMath<NeoQuaternion> {
 	 * The NeoQuaternion 1,0,0,0.
 	 */
 	public static final NeoQuaternion ONE;
-
+	
 	static {
 		ZERO = new NeoQuaternion();
 		ONE = new NeoQuaternion(1D, 0D, 0D, 0D);
 	}
 	private final double r, i, j, k;
-
+	
 	/**
 	 * Constructs a new NeoQuaternion with the specified r, i, j, k Values
 	 * 
@@ -48,7 +48,7 @@ public class NeoQuaternion implements Cloneable, BasicMath<NeoQuaternion> {
 		this.j = j;
 		this.k = k;
 	}
-
+	
 	public NeoQuaternion(double[] val) {
 		if (val.length != 4) {
 			throw new IllegalArgumentException("NeoQuaternion needs 4 values in input Array!");
@@ -58,7 +58,7 @@ public class NeoQuaternion implements Cloneable, BasicMath<NeoQuaternion> {
 		this.j = val[2];
 		this.k = val[3];
 	}
-
+	
 	public NeoQuaternion(List<Double> val) {
 		if (val.size() != 4) {
 			throw new IllegalArgumentException("NeoQuaternion needs 4 values in input List!");
@@ -68,29 +68,29 @@ public class NeoQuaternion implements Cloneable, BasicMath<NeoQuaternion> {
 		this.j = val.get(2);
 		this.k = val.get(3);
 	}
-
+	
 	/**
 	 * Constructs a new NeoQuaternion with all values 0
 	 */
 	public NeoQuaternion() {
 		this(0D, 0D, 0D, 0D);
 	}
-
+	
 	@Override
 	public NeoQuaternion add(NeoQuaternion o) {
 		return new NeoQuaternion(r + o.r, i + o.i, j + o.j, k + o.k);
 	}
-
+	
 	@Override
 	public NeoQuaternion subtract(NeoQuaternion o) {
 		return new NeoQuaternion(r - o.r, i - o.i, j - o.j, k - o.k);
 	}
-
+	
 	@Override
 	public Object clone() {
 		return new NeoQuaternion(r, i, j, k);
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,7 +106,7 @@ public class NeoQuaternion implements Cloneable, BasicMath<NeoQuaternion> {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -126,36 +126,40 @@ public class NeoQuaternion implements Cloneable, BasicMath<NeoQuaternion> {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public NeoQuaternion multiply(NeoQuaternion o) {
-		// TODO Auto-generated method stub
-		return null;
+		double nR, nI, nJ, nK;
+		nR = r * o.r - i * o.i - j * o.j - k * o.k;
+		nI = r * o.i + i * o.r + j * o.k - k * o.j;
+		nJ = r * o.j + j * o.r + k * o.i - i * o.k;
+		nK = r * o.k + k * o.r + i * o.j - j * o.i;
+		return new NeoQuaternion(nR, nI, nJ, nK);
 	}
-
+	
 	@Override
 	public NeoQuaternion divide(NeoQuaternion o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public NeoQuaternion abs() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public NeoQuaternion invert() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public NeoQuaternion get() {
 		return this;
 	}
-
+	
 	@Override
 	public NeoQuaternion multiply(double o) {
 		return new NeoQuaternion(r * o, i * o, j * o, k * o);
